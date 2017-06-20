@@ -4,9 +4,13 @@ import Axios from 'axios';
 class Video extends React.Component {
   constructor() {
     super();
+    this.state = {
+      views: ''
+    }
   }
 
-  componentDidMount(this.props.content.snippet.resourceId.videoId) {
+  componentDidMount() {
+    let id = this.props.content.snippet.resourceId.videoId;
     Axios.get('https://www.googleapis.com/youtube/v3/videos', {
       params: {
         part: 'snippet,contentDetails,statistics',
@@ -25,11 +29,11 @@ class Video extends React.Component {
     // console.log("Video.js", this.props.content);
     return (
       <div className="video">
-        <iframe style={{height: "90px", width: "120px"}}
+        <iframe style={{height: "128px", width: "170px"}}
           src={"http://www.youtube.com/embed/"+this.props.content.snippet.resourceId.videoId}>
         </iframe>
         <h3>{this.props.content.snippet.title}</h3>
-        <p>{this.videoViews(this.props.content.snippet.resourceId.videoId)}</p>
+        <p>{this.state.views}</p>
       </div>
     );
   }
