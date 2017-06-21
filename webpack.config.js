@@ -8,10 +8,14 @@ const config = {
     filename: 'bundle.js'
   },
   module: {
-    rules: [
+    loaders: [
       {
-        use: 'babel-loader',
+        loader: ['babel-loader'],
         test: /\.js$/
+      },
+      {
+        loader: 'style-loader!css-loader!sass-loader',
+        test: /\.scss$/
       }
     ]
   }

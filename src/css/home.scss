@@ -1,0 +1,22 @@
+@import "body";
+
+.main {
+  padding: 0 10% 0 10%;
+  margin-top: 13%;
+}
+
+#video-destaque {
+  width: 55%;
+  height: auto;
+  height: 500px;
+}
+
+#videos-list {
+  width: 35%;
+  border: solid 1px #ddd;
+  height: 500px;
+  overflow: scroll;
+  h3 {
+    font-size: 1em;
+  }
+}

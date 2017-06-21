@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import '../css/video.scss';
 
 class Video extends React.Component {
   constructor() {
@@ -29,11 +30,15 @@ class Video extends React.Component {
     // console.log("Video.js", this.props.content);
     return (
       <div className="video">
-        <iframe style={{height: "128px", width: "170px"}}
-          src={"http://www.youtube.com/embed/"+this.props.content.snippet.resourceId.videoId}>
-        </iframe>
-        <h3>{this.props.content.snippet.title}</h3>
-        <p>{this.state.views}</p>
+        <div className="content">
+          <iframe style={{height: "128px", width: "170px"}}
+            src={"http://www.youtube.com/embed/"+this.props.content.snippet.resourceId.videoId}>
+          </iframe>
+        </div>
+        <div className="content">
+          <h3>{this.props.content.snippet.title}</h3>
+          <p>{this.state.views}</p>
+        </div>
       </div>
     );
   }

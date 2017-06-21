@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import Nav from './Nav';
 import Video from './Video';
 import VideoDestaque from './VideoDestaque';
+import '../css/home.scss';
 
 class Home extends Component {
   constructor() {
@@ -11,7 +13,6 @@ class Home extends Component {
       destaque: ''
     }
   }
-  // channel id: UCEWHPFNilsT0IfQfutVzsag
 
   componentDidMount() {
     Axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
@@ -46,9 +47,12 @@ class Home extends Component {
     // console.log("items: ", this.state.items);
     return (
       <div>
-        <VideoDestaque video={this.state.destaque} />
-        <div className="videos-list">
-          { this.renderVideos(this.state.items) }
+        <Nav/>
+        <div className="main flex-columns">
+          <VideoDestaque video={this.state.destaque} />
+          <div id="videos-list">
+            { this.renderVideos(this.state.items) }
+          </div>
         </div>
       </div>
     );
