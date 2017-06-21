@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Nav from './Nav';
-import Video from './Video';
+import VideosList from './VideosList';
 import VideoDestaque from './VideoDestaque';
 import '../css/home.scss';
 
@@ -33,14 +33,9 @@ class Home extends Component {
     .catch((err) => {console.log(err)})
   }
 
-  renderVideos(items) {
-    if(!items) {
-      return <p>Loading...</p>
-    }
-    return items.map((item, index) => {
-      // console.log("mapping function", item);
-      return <Video key={index} content={item} {...this.props}/>
-    });
+  selectVideo(video) {
+    console.log("video was clicked");
+    this.setState({currentVideo: video});
   }
 
   render() {
@@ -51,7 +46,7 @@ class Home extends Component {
         <div className="main flex-columns">
           <VideoDestaque video={this.state.currentVideo} />
           <div id="videos-list">
-            { this.renderVideos(this.state.videos) }
+            <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)}/>
           </div>
         </div>
       </div>
