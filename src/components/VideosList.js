@@ -6,7 +6,8 @@ class VideosList extends React.Component {
   constructor() {
     super();
     this.state = {
-      playlistId: ''
+      playlistId: '',
+      counter: 0
     }
   }
 
@@ -31,17 +32,13 @@ class VideosList extends React.Component {
             key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
           }
       })
-      .then((res) => {
-        console.log(res);
-        let playlist = this.state.playlistId;
-        let i = 0;
-        if(playlist === res.data.items[i].id) {
-          i += 1;
-          this.setState({playlistId: res.data.items[i].id})
-        }
-        this.fetchNewVideos(res.data.items[i].id);
-      })
+      .then((res) => {this.selectPlaylist(res)})
       .catch((err) => {console.log(err)})
+  }
+
+  selectPlaylist(res) {
+      this.setState({counter: this.state.counter+1});
+      this.fetchNewVideos(res.data.items[this.state.counter].id);
   }
 
   fetchNewVideos(playlistId) {
@@ -54,7 +51,7 @@ class VideosList extends React.Component {
         }
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         this.fetchNewVideosIds(res.data.items);
       })
       .catch((err) => {console.log(err)})
@@ -80,17 +77,15 @@ class VideosList extends React.Component {
         }
       })
       .then((res) => {
-        console.log("fetch videos", res);
-
-        ------------->>>>>>>>>>>> append data!!!!!!!!!!
-
-
-        this.renderVideos(res.data.items, this.props.selectVideo);
+        // console.log("fetch videos", res);
+        this.props.loadMoreVideos(res.data.items);
       })
       .catch((err) => { console.log(err) });
   }
 
   render() {
+    console.log("VideoList playlist id", this.state.playlistId);
+    console.log("counter", this.state.counter);
     return(
       <div>
         { this.renderVideos(this.props.videos, this.props.selectVideo) }

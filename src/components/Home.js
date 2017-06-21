@@ -25,7 +25,7 @@ class Home extends Component {
         }
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // this.setState({
         //   videoInicial: res.data.items[0].snippet.resourceId.videoId,
         //   currentVideo: res.data.items[0]
@@ -59,7 +59,7 @@ class Home extends Component {
         }
       })
       .then((res) => {
-        console.log("fetch videos", res);
+        // console.log("fetch videos", res);
         this.setState({
           videoInicial: res.data.items[0].id,
           currentVideo: res.data.items[0],
@@ -85,9 +85,15 @@ class Home extends Component {
       });
   }
 
+  loadVideos(items) {
+    console.log("Home.js - loadVideos", items);
+    this.setState({videos: this.state.videos.concat(items)});
+  }
+
   render() {
     // console.log("items: ", this.state.items);
-    console.log(this.state.currentVideo);
+    // console.log(this.state.currentVideo);
+    // console.log("load more videos", this.state.videos);
     let currentVideo = this.state.currentVideo;
     const initialVideo = this.state.videoInicial;
 
@@ -97,7 +103,7 @@ class Home extends Component {
         <div className="main flex-columns">
           {this.renderCurrentVideo(currentVideo, initialVideo)}
           <div id="videos-list">
-            <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)}/>
+            <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)}/>
           </div>
         </div>
       </div>

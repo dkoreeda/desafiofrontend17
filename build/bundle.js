@@ -10966,7 +10966,7 @@ var Home = function (_Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        console.log(res);
+        // console.log(res);
         // this.setState({
         //   videoInicial: res.data.items[0].snippet.resourceId.videoId,
         //   currentVideo: res.data.items[0]
@@ -11007,7 +11007,7 @@ var Home = function (_Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        console.log("fetch videos", res);
+        // console.log("fetch videos", res);
         _this3.setState({
           videoInicial: res.data.items[0].id,
           currentVideo: res.data.items[0],
@@ -11039,10 +11039,17 @@ var Home = function (_Component) {
       });
     }
   }, {
+    key: 'loadVideos',
+    value: function loadVideos(items) {
+      console.log("Home.js - loadVideos", items);
+      this.setState({ videos: this.state.videos.concat(items) });
+    }
+  }, {
     key: 'render',
     value: function render() {
       // console.log("items: ", this.state.items);
-      console.log(this.state.currentVideo);
+      // console.log(this.state.currentVideo);
+      // console.log("load more videos", this.state.videos);
       var currentVideo = this.state.currentVideo;
       var initialVideo = this.state.videoInicial;
 
@@ -11057,7 +11064,7 @@ var Home = function (_Component) {
           _react2.default.createElement(
             'div',
             { id: 'videos-list' },
-            _react2.default.createElement(_VideosList2.default, { videos: this.state.videos, selectVideo: this.selectVideo.bind(this) })
+            _react2.default.createElement(_VideosList2.default, { videos: this.state.videos, selectVideo: this.selectVideo.bind(this), loadMoreVideos: this.loadVideos.bind(this) })
           )
         )
       );
@@ -24568,7 +24575,7 @@ __webpack_require__(222);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Video = function Video(props) {
-  console.log("Video.js", props.content);
+  // console.log("Video.js", props.content);
   // <iframe style={{height: "128px", width: "170px"}}
   //   src={"http://www.youtube.com/embed/"+props.content.snippet.resourceId.videoId}>
   // </iframe>
@@ -24643,7 +24650,8 @@ var VideosList = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (VideosList.__proto__ || Object.getPrototypeOf(VideosList)).call(this));
 
     _this.state = {
-      playlistId: ''
+      playlistId: '',
+      counter: 0
     };
     return _this;
   }
@@ -24678,17 +24686,22 @@ var VideosList = function (_React$Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        console.log(res);
-        var playlist = _this2.state.playlistId;
-        var i = 0;
-        if (playlist === res.data.items[i].id) {
-          i += 1;
-          _this2.setState({ playlistId: res.data.items[i].id });
-        }
-        _this2.fetchNewVideos(res.data.items[i].id);
+        _this2.selectPlaylist(res);
       }).catch(function (err) {
         console.log(err);
       });
+    }
+  }, {
+    key: 'selectPlaylist',
+    value: function selectPlaylist(res) {
+      // if(this.state.playlistId === res.data.items[this.state.counter].id) {
+      this.setState({
+        // playlistId: res.data.items[this.state.counter+1].id,
+        counter: this.state.counter + 1
+      });
+      this.fetchNewVideos(res.data.items[this.state.counter].id);
+      // }
+      // this.fetchNewVideos(res.data.items[this.state.counter].id);
     }
   }, {
     key: 'fetchNewVideos',
@@ -24703,7 +24716,7 @@ var VideosList = function (_React$Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        console.log(res);
+        // console.log(res);
         _this3.fetchNewVideosIds(res.data.items);
       }).catch(function (err) {
         console.log(err);
@@ -24736,8 +24749,8 @@ var VideosList = function (_React$Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        console.log("fetch videos", res);
-        _this4.renderVideos(res.data.items, _this4.props.selectVideo);
+        // console.log("fetch videos", res);
+        _this4.props.loadMoreVideos(res.data.items);
       }).catch(function (err) {
         console.log(err);
       });
@@ -24747,6 +24760,8 @@ var VideosList = function (_React$Component) {
     value: function render() {
       var _this5 = this;
 
+      console.log("VideoList playlist id", this.state.playlistId);
+      console.log("counter", this.state.counter);
       return _react2.default.createElement(
         'div',
         null,
