@@ -1,13 +1,20 @@
 import React from 'react';
 
 const CurrentVideo = (props) => {
-  // console.log("current video", props);
+
+  console.log("current video", props);
+  let videoId = props.video.id;
+  if(!videoId){
+    videoId = props.video.snippet.resourceId.videoId;
+  }
+  console.log("current video id", videoId);
+
   return(
       <div>
-        <iframe style={{height: "313px", width: "560px"}} src={"http://www.youtube.com/embed/"+props.video}></iframe>
+        <iframe style={{height: "313px", width: "560px"}} src={"http://www.youtube.com/embed/"+videoId}></iframe>
         <div className="info-box">
-          <h3>{props.title}</h3>
-          <p>{props.description}</p>
+          <h3>{props.video.snippet.title}</h3>
+          <p>{props.video.snippet.description}</p>
         </div>
       </div>
   );

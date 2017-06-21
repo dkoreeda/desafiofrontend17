@@ -2,67 +2,76 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Nav from './Nav';
 import VideosList from './VideosList';
-import VideoDestaque from './VideoDestaque';
+import CurrentVideo from './CurrentVideo';
 import '../css/home.scss';
 
 class Home extends Component {
   constructor() {
-    super();
-    this.state = {
-      videos: [],
-      currentVideo: ''
-    }
+      super();
+      this.state = {
+        videos: [],
+        currentVideo: ''
+      }
   }
 
   componentDidMount() {
-    Axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
-      params: {
-        part: 'snippet,contentDetails',
-        maxResults: '4',
-        playlistId: 'PLT0Smhj8chMV0u07ZU7Vc5NvtstNJpeuF',
-        key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
-      }
-    })
-    .then((res) => {
-      // console.log(res);
-      this.fetchVideosIds(res.data.items);
-    })
-    .catch((err) => {console.log(err)})
+      Axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
+        params: {
+          part: 'snippet,contentDetails',
+          maxResults: '4',
+          playlistId: 'PLT0Smhj8chMV0u07ZU7Vc5NvtstNJpeuF',
+          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+        }
+      })
+      .then((res) => {
+        console.log(res);
+        this.setState({currentVideo: res.data.items[0]});
+        this.fetchVideosIds(res.data.items);
+      })
+      .catch((err) => {console.log(err)})
   }
 
   fetchVideosIds(videos) {
-    let videosIds = [];
-    if(!videos) {
+      let videosIds = [];
+      if(!videos) {
+        return <p>Loading...</p>
+      }
+      videos.map((video, index) => {
+        // console.log("mapping function", video);
+        let id = video.snippet.resourceId.videoId;
+        // console.log("mapping function - video id", id);
+        videosIds.push(id);
+        // console.log("video Ids", videosIds);
+      });
+
+      const jointIds = videosIds.join(',');
+      // console.log(jointIds);
+
+      Axios.get('https://www.googleapis.com/youtube/v3/videos', {
+        params: {
+          part: 'snippet,contentDetails,statistics',
+          id: jointIds,
+          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+        }
+      })
+      .then((res) => {
+        // console.log("fetch videos", res);
+        this.setState({videos: res.data.items});
+      })
+      .catch((err) => { console.log(err) });
+  }
+
+  renderCurrentVideo(video) {
+    if(!video) {
       return <p>Loading...</p>
     }
-    videos.map((video, index) => {
-      // console.log("mapping function", video);
-      let id = video.snippet.resourceId.videoId;
-      // console.log("mapping function - video id", id);
-      videosIds.push(id);
-      // console.log("video Ids", videosIds);
-    });
+    return <CurrentVideo video={video} />
 
-    const jointIds = videosIds.join(',');
-    // console.log(jointIds);
-
-    Axios.get('https://www.googleapis.com/youtube/v3/videos', {
-      params: {
-        part: 'snippet,contentDetails,statistics',
-        id: jointIds,
-        key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
-      }
-    })
-    .then((res) => {
-      // console.log("fetch videos", res);
-      this.setState({videos: res.data.items});
-    })
-    .catch((err) => { console.log(err) });
   }
 
   selectVideo(video) {
-    console.log("video was clicked");
-    this.setState({currentVideo: video});
+      console.log("video was clicked");
+      this.setState({currentVideo: video});
   }
 
   render() {
@@ -72,7 +81,7 @@ class Home extends Component {
       <div>
         <Nav/>
         <div className="main flex-columns">
-          <VideoDestaque video={this.state.currentVideo} />
+          {this.renderCurrentVideo(this.state.currentVideo)}
           <div id="videos-list">
             <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)}/>
           </div>
