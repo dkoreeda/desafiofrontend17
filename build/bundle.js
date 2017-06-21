@@ -10966,11 +10966,11 @@ var Home = function (_Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        // console.log(res);
-        _this2.setState({
-          videoInicial: res.data.items[0].snippet.resourceId.videoId,
-          currentVideo: res.data.items[0]
-        });
+        console.log(res);
+        // this.setState({
+        //   videoInicial: res.data.items[0].snippet.resourceId.videoId,
+        //   currentVideo: res.data.items[0]
+        // });
         _this2.fetchVideosIds(res.data.items);
       }).catch(function (err) {
         console.log(err);
@@ -11007,8 +11007,12 @@ var Home = function (_Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        // console.log("fetch videos", res);
-        _this3.setState({ videos: res.data.items });
+        console.log("fetch videos", res);
+        _this3.setState({
+          videoInicial: res.data.items[0].id,
+          currentVideo: res.data.items[0],
+          videos: res.data.items
+        });
       }).catch(function (err) {
         console.log(err);
       });
@@ -24477,12 +24481,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var CurrentVideo = function CurrentVideo(props) {
 
-  // console.log("current video", props);
-  // let videoId = props.video.id;
-  // if(!videoId){
-  //   videoId = props.video.snippet.resourceId.videoId;
-  // }
-  // console.log("current video id", videoId);
   var videoId = props.initial;
   if (!props.initial) {
     videoId = props.video.id;
@@ -24499,6 +24497,16 @@ var CurrentVideo = function CurrentVideo(props) {
         "h3",
         null,
         props.video.snippet.title
+      ),
+      _react2.default.createElement(
+        "span",
+        null,
+        props.video.statistics.viewCount
+      ),
+      _react2.default.createElement(
+        "span",
+        null,
+        props.video.snippet.publishedAt
       ),
       _react2.default.createElement(
         "p",
@@ -24583,9 +24591,14 @@ var Video = function Video(props) {
         props.content.snippet.title
       ),
       _react2.default.createElement(
-        'p',
+        'span',
         null,
         props.content.statistics.viewCount
+      ),
+      _react2.default.createElement(
+        'span',
+        null,
+        props.content.snippet.publishedAt
       )
     )
   );

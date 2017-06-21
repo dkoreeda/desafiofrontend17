@@ -25,11 +25,11 @@ class Home extends Component {
         }
       })
       .then((res) => {
-        // console.log(res);
-        this.setState({
-          videoInicial: res.data.items[0].snippet.resourceId.videoId,
-          currentVideo: res.data.items[0]
-        });
+        console.log(res);
+        // this.setState({
+        //   videoInicial: res.data.items[0].snippet.resourceId.videoId,
+        //   currentVideo: res.data.items[0]
+        // });
         this.fetchVideosIds(res.data.items);
       })
       .catch((err) => {console.log(err)})
@@ -59,8 +59,12 @@ class Home extends Component {
         }
       })
       .then((res) => {
-        // console.log("fetch videos", res);
-        this.setState({videos: res.data.items});
+        console.log("fetch videos", res);
+        this.setState({
+          videoInicial: res.data.items[0].id,
+          currentVideo: res.data.items[0],
+          videos: res.data.items
+        });
       })
       .catch((err) => { console.log(err) });
   }
