@@ -14,7 +14,6 @@ const Video = (props) => {
         <div className="content">
           <h3>{props.content.snippet.title}</h3>
           <span>{props.content.statistics.viewCount}</span>
-          <span>{props.content.snippet.publishedAt}</span>
         </div>
       </div>
     );

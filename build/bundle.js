@@ -24594,11 +24594,6 @@ var Video = function Video(props) {
         'span',
         null,
         props.content.statistics.viewCount
-      ),
-      _react2.default.createElement(
-        'span',
-        null,
-        props.content.snippet.publishedAt
       )
     )
   );
@@ -24645,7 +24640,12 @@ var VideosList = function (_React$Component) {
   function VideosList() {
     _classCallCheck(this, VideosList);
 
-    return _possibleConstructorReturn(this, (VideosList.__proto__ || Object.getPrototypeOf(VideosList)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (VideosList.__proto__ || Object.getPrototypeOf(VideosList)).call(this));
+
+    _this.state = {
+      playlistId: ''
+    };
+    return _this;
   }
 
   _createClass(VideosList, [{
@@ -24666,12 +24666,98 @@ var VideosList = function (_React$Component) {
       });
     }
   }, {
+    key: 'loadMoreVideos',
+    value: function loadMoreVideos(e) {
+      var _this2 = this;
+
+      _axios2.default.get('https://www.googleapis.com/youtube/v3/playlists', {
+        params: {
+          part: 'snippet,contentDetails',
+          channelId: 'UCEWHPFNilsT0IfQfutVzsag',
+          maxResults: '20',
+          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+        }
+      }).then(function (res) {
+        console.log(res);
+        var playlist = _this2.state.playlistId;
+        var i = 0;
+        if (playlist === res.data.items[i].id) {
+          i += 1;
+          _this2.setState({ playlistId: res.data.items[i].id });
+        }
+        _this2.fetchNewVideos(res.data.items[i].id);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: 'fetchNewVideos',
+    value: function fetchNewVideos(playlistId) {
+      var _this3 = this;
+
+      _axios2.default.get('https://www.googleapis.com/youtube/v3/playlistItems', {
+        params: {
+          part: 'snippet,contentDetails',
+          maxResults: '4',
+          playlistId: playlistId,
+          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+        }
+      }).then(function (res) {
+        console.log(res);
+        _this3.fetchNewVideosIds(res.data.items);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: 'fetchNewVideosIds',
+    value: function fetchNewVideosIds(videos) {
+      var _this4 = this;
+
+      var videosIds = [];
+      if (!videos) {
+        return _react2.default.createElement(
+          'p',
+          null,
+          'Loading...'
+        );
+      }
+      videos.map(function (video, index) {
+        var id = video.snippet.resourceId.videoId;
+        videosIds.push(id);
+      });
+
+      var jointIds = videosIds.join(',');
+
+      _axios2.default.get('https://www.googleapis.com/youtube/v3/videos', {
+        params: {
+          part: 'snippet,contentDetails,statistics',
+          id: jointIds,
+          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+        }
+      }).then(function (res) {
+        console.log("fetch videos", res);
+        _this4.renderVideos(res.data.items, _this4.props.selectVideo);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this5 = this;
+
       return _react2.default.createElement(
         'div',
         null,
-        this.renderVideos(this.props.videos, this.props.selectVideo)
+        this.renderVideos(this.props.videos, this.props.selectVideo),
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return _this5.loadMoreVideos(e);
+            } },
+          'CARREGAR MAIS VIDEOS...'
+        )
       );
     }
   }]);
