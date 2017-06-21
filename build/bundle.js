@@ -24435,17 +24435,21 @@ var CurrentVideo = function CurrentVideo(props) {
 
   return _react2.default.createElement(
     "div",
-    { id: "video-destaque" },
+    null,
     _react2.default.createElement("iframe", { style: { height: "313px", width: "560px" }, src: "http://www.youtube.com/embed/" + props.video }),
     _react2.default.createElement(
-      "h3",
-      null,
-      props.title
-    ),
-    _react2.default.createElement(
-      "p",
-      null,
-      props.description
+      "div",
+      { className: "info-box" },
+      _react2.default.createElement(
+        "h3",
+        null,
+        props.title
+      ),
+      _react2.default.createElement(
+        "p",
+        null,
+        props.description
+      )
     )
   );
 };
@@ -24560,7 +24564,7 @@ var Video = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'content info-box' },
+          { className: 'content' },
           _react2.default.createElement(
             'h3',
             null,
@@ -24691,7 +24695,7 @@ exports = module.exports = __webpack_require__(36)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  font-size: 18px;\n  font-family: 'Titillium Web', sans-serif;\n  margin: 0 auto;\n  width: 100%;\n  height: auto; }\n\n.flex-columns {\n  display: flex;\n  flex-wrap: wrap; }\n\n.main {\n  padding: 0 10% 0 10%;\n  margin-top: 13%; }\n\n#video-destaque {\n  width: 55%;\n  height: auto;\n  height: 500px; }\n\n#videos-list {\n  width: 35%;\n  border: solid 1px #ddd;\n  height: 500px;\n  overflow: scroll; }\n  #videos-list h3 {\n    font-size: 1em; }\n", ""]);
+exports.push([module.i, "body {\n  font-size: 18px;\n  font-family: 'Titillium Web', sans-serif;\n  margin: 0 auto;\n  width: 100%;\n  height: auto; }\n\n.flex-columns {\n  display: flex;\n  flex-wrap: wrap; }\n\n.main {\n  padding: 0 10% 0 10%;\n  margin-top: 7%; }\n\n#video-destaque {\n  width: 560px;\n  height: 500px;\n  margin-right: 28.5px; }\n  #video-destaque iframe {\n    width: 100%;\n    height: 210px; }\n\n#videos-list {\n  width: 35%;\n  border: solid 1px #ddd;\n  height: 500px;\n  overflow: scroll; }\n  #videos-list h3 {\n    font-size: 1em; }\n\n.info-box {\n  height: 110px;\n  border: 1px solid #ddd;\n  overflow: scroll;\n  padding: 22.5px; }\n  .info-box h3 {\n    color: #a8395c; }\n", ""]);
 
 // exports
 
@@ -24719,7 +24723,7 @@ exports = module.exports = __webpack_require__(36)(undefined);
 
 
 // module
-exports.push([module.i, ".video {\n  display: flex;\n  justify-content: centerl; }\n\n.content {\n  width: 50%; }\n  .content h3 {\n    color: #a8395c; }\n\n.info-box {\n  height: 155px;\n  border: 1px solid #ddd;\n  overflow: scroll; }\n", ""]);
+exports.push([module.i, ".video {\n  display: flex;\n  justify-content: centerl; }\n\n.content {\n  width: 50%; }\n  .content h3 {\n    color: #a8395c; }\n", ""]);
 
 // exports
 

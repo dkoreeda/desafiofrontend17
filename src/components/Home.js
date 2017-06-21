@@ -9,8 +9,8 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      items: [],
-      destaque: ''
+      videos: [],
+      currentVideo: ''
     }
   }
 
@@ -26,8 +26,8 @@ class Home extends Component {
     .then((res) => {
       // console.log(res);
       this.setState({
-        items: res.data.items,
-        destaque: res.data.items[0]
+        videos: res.data.items,
+        currentVideo: res.data.items[0]
       })
     })
     .catch((err) => {console.log(err)})
@@ -49,9 +49,9 @@ class Home extends Component {
       <div>
         <Nav/>
         <div className="main flex-columns">
-          <VideoDestaque video={this.state.destaque} />
+          <VideoDestaque video={this.state.currentVideo} />
           <div id="videos-list">
-            { this.renderVideos(this.state.items) }
+            { this.renderVideos(this.state.videos) }
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ class Video extends React.Component {
   render() {
     // console.log("Video.js", this.props.content);
     return (
-      <div className="video">
+      <div className="video" onClick={(e) => this.props.runVideo(this.props.video)}>
         <div className="content">
           <iframe style={{height: "128px", width: "170px"}}
             src={"http://www.youtube.com/embed/"+this.props.content.snippet.resourceId.videoId}>
