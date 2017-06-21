@@ -1,9 +1,7 @@
 import React from 'react';
 
 const CurrentVideo = (props) => {
-  console.log("current video", props);
-
-
+  // console.log("current video", props);
   return(
       <div>
         <iframe style={{height: "313px", width: "560px"}} src={"http://www.youtube.com/embed/"+props.video}></iframe>

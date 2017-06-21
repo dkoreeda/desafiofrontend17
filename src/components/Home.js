@@ -20,17 +20,44 @@ class Home extends Component {
         part: 'snippet,contentDetails',
         maxResults: '4',
         playlistId: 'PLT0Smhj8chMV0u07ZU7Vc5NvtstNJpeuF',
-        key: 'AIzaSyA-_-lElXcltZIBGaGiIqHiiYZIOO6bf1A'
+        key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
       }
     })
     .then((res) => {
       // console.log(res);
-      this.setState({
-        videos: res.data.items,
-        currentVideo: res.data.items[0]
-      })
+      this.fetchVideosIds(res.data.items);
     })
     .catch((err) => {console.log(err)})
+  }
+
+  fetchVideosIds(videos) {
+    let videosIds = [];
+    if(!videos) {
+      return <p>Loading...</p>
+    }
+    videos.map((video, index) => {
+      // console.log("mapping function", video);
+      let id = video.snippet.resourceId.videoId;
+      // console.log("mapping function - video id", id);
+      videosIds.push(id);
+      // console.log("video Ids", videosIds);
+    });
+
+    const jointIds = videosIds.join(',');
+    // console.log(jointIds);
+
+    Axios.get('https://www.googleapis.com/youtube/v3/videos', {
+      params: {
+        part: 'snippet,contentDetails,statistics',
+        id: jointIds,
+        key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+      }
+    })
+    .then((res) => {
+      // console.log("fetch videos", res);
+      this.setState({videos: res.data.items});
+    })
+    .catch((err) => { console.log(err) });
   }
 
   selectVideo(video) {
@@ -40,6 +67,7 @@ class Home extends Component {
 
   render() {
     // console.log("items: ", this.state.items);
+    console.log(this.state.currentVideo);
     return (
       <div>
         <Nav/>

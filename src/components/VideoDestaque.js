@@ -17,7 +17,7 @@ class VideoDestaque extends React.Component {
       params: {
         part: 'snippet,contentDetails, statistics',
         id: '5d4sCg1RZHQ',
-        key: 'AIzaSyA-_-lElXcltZIBGaGiIqHiiYZIOO6bf1A'
+        key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
       }
     })
     .then((res) => {
@@ -39,8 +39,7 @@ class VideoDestaque extends React.Component {
   }
 
   render() {
-    console.log("video destaque", this.state.video);
-
+    // console.log("video destaque", this.state.video);
     return(
      <div id="video-destaque">
         {this.renderVideoDestaque(this.state.video, this.state.title, this.state.description)}

@@ -1568,7 +1568,7 @@ var CallbackQueue = __webpack_require__(66);
 var PooledClass = __webpack_require__(16);
 var ReactFeatureFlags = __webpack_require__(71);
 var ReactReconciler = __webpack_require__(19);
-var Transaction = __webpack_require__(31);
+var Transaction = __webpack_require__(30);
 
 var invariant = __webpack_require__(1);
 
@@ -2474,7 +2474,7 @@ var _assign = __webpack_require__(4);
 var ReactCurrentOwner = __webpack_require__(12);
 
 var warning = __webpack_require__(2);
-var canDefineProperty = __webpack_require__(34);
+var canDefineProperty = __webpack_require__(33);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 var REACT_ELEMENT_TYPE = __webpack_require__(88);
@@ -2817,7 +2817,7 @@ module.exports = ReactElement;
 
 
 var DOMNamespaces = __webpack_require__(39);
-var setInnerHTML = __webpack_require__(33);
+var setInnerHTML = __webpack_require__(32);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(46);
 var setTextContent = __webpack_require__(85);
@@ -3129,7 +3129,7 @@ var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
   var lowPriorityWarning = __webpack_require__(53);
-  var canDefineProperty = __webpack_require__(34);
+  var canDefineProperty = __webpack_require__(33);
   var ReactElementValidator = __webpack_require__(89);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
@@ -3297,7 +3297,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _prodInvariant = __webpack_require__(3);
 
-var EventPluginRegistry = __webpack_require__(28);
+var EventPluginRegistry = __webpack_require__(27);
 var EventPluginUtils = __webpack_require__(40);
 var ReactErrorUtils = __webpack_require__(44);
 
@@ -3818,15 +3818,6 @@ module.exports = SyntheticUIEvent;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = __webpack_require__(94);
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -3849,7 +3840,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4108,7 +4099,7 @@ module.exports = EventPluginRegistry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4126,7 +4117,7 @@ module.exports = EventPluginRegistry;
 
 var _assign = __webpack_require__(4);
 
-var EventPluginRegistry = __webpack_require__(28);
+var EventPluginRegistry = __webpack_require__(27);
 var ReactEventEmitterMixin = __webpack_require__(161);
 var ViewportMetrics = __webpack_require__(77);
 
@@ -4437,7 +4428,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 module.exports = ReactBrowserEventEmitter;
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4514,7 +4505,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 module.exports = SyntheticMouseEvent;
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4748,7 +4739,7 @@ module.exports = TransactionImpl;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4875,7 +4866,7 @@ function escapeTextContentForBrowser(text) {
 module.exports = escapeTextContentForBrowser;
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4978,7 +4969,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setInnerHTML;
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5008,6 +4999,15 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = canDefineProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(94);
 
 /***/ }),
 /* 35 */
@@ -5282,7 +5282,7 @@ var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(9);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(46);
-var setInnerHTML = __webpack_require__(33);
+var setInnerHTML = __webpack_require__(32);
 var setTextContent = __webpack_require__(85);
 
 function getNodeAfter(parentNode, node) {
@@ -8945,7 +8945,7 @@ var _prodInvariant = __webpack_require__(3);
 var DOMLazyTree = __webpack_require__(18);
 var DOMProperty = __webpack_require__(14);
 var React = __webpack_require__(20);
-var ReactBrowserEventEmitter = __webpack_require__(29);
+var ReactBrowserEventEmitter = __webpack_require__(28);
 var ReactCurrentOwner = __webpack_require__(12);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMContainerInfo = __webpack_require__(144);
@@ -8958,10 +8958,10 @@ var ReactReconciler = __webpack_require__(19);
 var ReactUpdateQueue = __webpack_require__(45);
 var ReactUpdates = __webpack_require__(11);
 
-var emptyObject = __webpack_require__(27);
+var emptyObject = __webpack_require__(26);
 var instantiateReactComponent = __webpack_require__(83);
 var invariant = __webpack_require__(1);
-var setInnerHTML = __webpack_require__(33);
+var setInnerHTML = __webpack_require__(32);
 var shouldUpdateReactComponent = __webpack_require__(51);
 var warning = __webpack_require__(2);
 
@@ -10076,8 +10076,8 @@ module.exports = isTextInputElement;
 
 
 var ExecutionEnvironment = __webpack_require__(6);
-var escapeTextContentForBrowser = __webpack_require__(32);
-var setInnerHTML = __webpack_require__(33);
+var escapeTextContentForBrowser = __webpack_require__(31);
+var setInnerHTML = __webpack_require__(32);
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -10323,8 +10323,8 @@ var _prodInvariant = __webpack_require__(21),
 
 var ReactNoopUpdateQueue = __webpack_require__(90);
 
-var canDefineProperty = __webpack_require__(34);
-var emptyObject = __webpack_require__(27);
+var canDefineProperty = __webpack_require__(33);
+var emptyObject = __webpack_require__(26);
 var invariant = __webpack_require__(1);
 var lowPriorityWarning = __webpack_require__(53);
 
@@ -10507,7 +10507,7 @@ var ReactElement = __webpack_require__(17);
 
 var checkReactTypeSpec = __webpack_require__(207);
 
-var canDefineProperty = __webpack_require__(34);
+var canDefineProperty = __webpack_require__(33);
 var getIteratorFn = __webpack_require__(91);
 var warning = __webpack_require__(2);
 var lowPriorityWarning = __webpack_require__(53);
@@ -10911,7 +10911,7 @@ var _react = __webpack_require__(15);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(26);
+var _axios = __webpack_require__(34);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -10962,14 +10962,48 @@ var Home = function (_Component) {
           part: 'snippet,contentDetails',
           maxResults: '4',
           playlistId: 'PLT0Smhj8chMV0u07ZU7Vc5NvtstNJpeuF',
-          key: 'AIzaSyA-_-lElXcltZIBGaGiIqHiiYZIOO6bf1A'
+          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
         // console.log(res);
-        _this2.setState({
-          videos: res.data.items,
-          currentVideo: res.data.items[0]
-        });
+        _this2.fetchVideosIds(res.data.items);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: 'fetchVideosIds',
+    value: function fetchVideosIds(videos) {
+      var _this3 = this;
+
+      var videosIds = [];
+      if (!videos) {
+        return _react2.default.createElement(
+          'p',
+          null,
+          'Loading...'
+        );
+      }
+      videos.map(function (video, index) {
+        // console.log("mapping function", video);
+        var id = video.snippet.resourceId.videoId;
+        // console.log("mapping function - video id", id);
+        videosIds.push(id);
+        // console.log("video Ids", videosIds);
+      });
+
+      var jointIds = videosIds.join(',');
+      // console.log(jointIds);
+
+      _axios2.default.get('https://www.googleapis.com/youtube/v3/videos', {
+        params: {
+          part: 'snippet,contentDetails,statistics',
+          id: jointIds,
+          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+        }
+      }).then(function (res) {
+        // console.log("fetch videos", res);
+        _this3.setState({ videos: res.data.items });
       }).catch(function (err) {
         console.log(err);
       });
@@ -10984,6 +11018,7 @@ var Home = function (_Component) {
     key: 'render',
     value: function render() {
       // console.log("items: ", this.state.items);
+      console.log(this.state.currentVideo);
       return _react2.default.createElement(
         'div',
         null,
@@ -11819,7 +11854,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _assign = __webpack_require__(4);
 
-var emptyObject = __webpack_require__(27);
+var emptyObject = __webpack_require__(26);
 var _invariant = __webpack_require__(1);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -15020,7 +15055,7 @@ module.exports = DefaultEventPluginOrder;
 
 var EventPropagators = __webpack_require__(23);
 var ReactDOMComponentTree = __webpack_require__(5);
-var SyntheticMouseEvent = __webpack_require__(30);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 var eventTypes = {
   mouseEnter: {
@@ -15672,7 +15707,7 @@ if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(189);
 }
 
-var emptyObject = __webpack_require__(27);
+var emptyObject = __webpack_require__(26);
 var invariant = __webpack_require__(1);
 var shallowEqual = __webpack_require__(37);
 var shouldUpdateReactComponent = __webpack_require__(51);
@@ -16693,8 +16728,8 @@ var DOMNamespaces = __webpack_require__(39);
 var DOMProperty = __webpack_require__(14);
 var DOMPropertyOperations = __webpack_require__(67);
 var EventPluginHub = __webpack_require__(22);
-var EventPluginRegistry = __webpack_require__(28);
-var ReactBrowserEventEmitter = __webpack_require__(29);
+var EventPluginRegistry = __webpack_require__(27);
+var ReactBrowserEventEmitter = __webpack_require__(28);
 var ReactDOMComponentFlags = __webpack_require__(68);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMInput = __webpack_require__(148);
@@ -16706,7 +16741,7 @@ var ReactMultiChild = __webpack_require__(167);
 var ReactServerRenderingTransaction = __webpack_require__(172);
 
 var emptyFunction = __webpack_require__(10);
-var escapeTextContentForBrowser = __webpack_require__(32);
+var escapeTextContentForBrowser = __webpack_require__(31);
 var invariant = __webpack_require__(1);
 var isEventSupported = __webpack_require__(50);
 var shallowEqual = __webpack_require__(37);
@@ -18656,7 +18691,7 @@ var DOMChildrenOperations = __webpack_require__(38);
 var DOMLazyTree = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(5);
 
-var escapeTextContentForBrowser = __webpack_require__(32);
+var escapeTextContentForBrowser = __webpack_require__(31);
 var invariant = __webpack_require__(1);
 var validateDOMNesting = __webpack_require__(52);
 
@@ -19126,7 +19161,7 @@ module.exports = {
 
 
 var DOMProperty = __webpack_require__(14);
-var EventPluginRegistry = __webpack_require__(28);
+var EventPluginRegistry = __webpack_require__(27);
 var ReactComponentTreeHook = __webpack_require__(7);
 
 var warning = __webpack_require__(2);
@@ -19615,7 +19650,7 @@ module.exports = ReactDebugTool;
 var _assign = __webpack_require__(4);
 
 var ReactUpdates = __webpack_require__(11);
-var Transaction = __webpack_require__(31);
+var Transaction = __webpack_require__(30);
 
 var emptyFunction = __webpack_require__(10);
 
@@ -20042,7 +20077,7 @@ var EventPluginHub = __webpack_require__(22);
 var EventPluginUtils = __webpack_require__(40);
 var ReactComponentEnvironment = __webpack_require__(43);
 var ReactEmptyComponent = __webpack_require__(70);
-var ReactBrowserEventEmitter = __webpack_require__(29);
+var ReactBrowserEventEmitter = __webpack_require__(28);
 var ReactHostComponent = __webpack_require__(72);
 var ReactUpdates = __webpack_require__(11);
 
@@ -20760,10 +20795,10 @@ var _assign = __webpack_require__(4);
 
 var CallbackQueue = __webpack_require__(66);
 var PooledClass = __webpack_require__(16);
-var ReactBrowserEventEmitter = __webpack_require__(29);
+var ReactBrowserEventEmitter = __webpack_require__(28);
 var ReactInputSelection = __webpack_require__(73);
 var ReactInstrumentation = __webpack_require__(9);
-var Transaction = __webpack_require__(31);
+var Transaction = __webpack_require__(30);
 var ReactUpdateQueue = __webpack_require__(45);
 
 /**
@@ -21039,7 +21074,7 @@ module.exports = ReactRef;
 var _assign = __webpack_require__(4);
 
 var PooledClass = __webpack_require__(16);
-var Transaction = __webpack_require__(31);
+var Transaction = __webpack_require__(30);
 var ReactInstrumentation = __webpack_require__(9);
 var ReactServerUpdateQueue = __webpack_require__(173);
 
@@ -21806,7 +21841,7 @@ var SyntheticClipboardEvent = __webpack_require__(179);
 var SyntheticEvent = __webpack_require__(13);
 var SyntheticFocusEvent = __webpack_require__(182);
 var SyntheticKeyboardEvent = __webpack_require__(184);
-var SyntheticMouseEvent = __webpack_require__(30);
+var SyntheticMouseEvent = __webpack_require__(29);
 var SyntheticDragEvent = __webpack_require__(181);
 var SyntheticTouchEvent = __webpack_require__(185);
 var SyntheticTransitionEvent = __webpack_require__(186);
@@ -22155,7 +22190,7 @@ module.exports = SyntheticCompositionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(30);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 /**
  * @interface DragEvent
@@ -22462,7 +22497,7 @@ module.exports = SyntheticTransitionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(30);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 /**
  * @interface WheelEvent
@@ -23245,7 +23280,7 @@ module.exports = getVendorPrefixedEventName;
 
 
 
-var escapeTextContentForBrowser = __webpack_require__(32);
+var escapeTextContentForBrowser = __webpack_require__(31);
 
 /**
  * Escapes attribute value to prevent scripting attacks.
@@ -24418,8 +24453,7 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var CurrentVideo = function CurrentVideo(props) {
-  console.log("current video", props);
-
+  // console.log("current video", props);
   return _react2.default.createElement(
     "div",
     null,
@@ -24487,16 +24521,15 @@ var _react = __webpack_require__(15);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(26);
-
-var _axios2 = _interopRequireDefault(_axios);
-
 __webpack_require__(223);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Video = function Video(props) {
   // console.log("Video.js", this.props.content);
+  // <iframe style={{height: "128px", width: "170px"}}
+  //   src={"http://www.youtube.com/embed/"+props.content.snippet.resourceId.videoId}>
+  // </iframe>
   return _react2.default.createElement(
     'div',
     { className: 'video', onClick: function onClick(e) {
@@ -24505,8 +24538,7 @@ var Video = function Video(props) {
     _react2.default.createElement(
       'div',
       { className: 'content' },
-      _react2.default.createElement('iframe', { style: { height: "128px", width: "170px" },
-        src: "http://www.youtube.com/embed/" + props.content.snippet.resourceId.videoId })
+      _react2.default.createElement('img', { src: props.content.snippet.thumbnails.default.url, alt: 'video thumbnail' })
     ),
     _react2.default.createElement(
       'div',
@@ -24519,7 +24551,7 @@ var Video = function Video(props) {
       _react2.default.createElement(
         'p',
         null,
-        props.views
+        props.content.statistics.viewCount
       )
     )
   );
@@ -24544,7 +24576,7 @@ var _react = __webpack_require__(15);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(26);
+var _axios = __webpack_require__(34);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -24585,7 +24617,7 @@ var VideoDestaque = function (_React$Component) {
         params: {
           part: 'snippet,contentDetails, statistics',
           id: '5d4sCg1RZHQ',
-          key: 'AIzaSyA-_-lElXcltZIBGaGiIqHiiYZIOO6bf1A'
+          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
         // console.log("video title", res.data.items[0].snippet.title);
@@ -24613,8 +24645,7 @@ var VideoDestaque = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log("video destaque", this.state.video);
-
+      // console.log("video destaque", this.state.video);
       return _react2.default.createElement(
         'div',
         { id: 'video-destaque' },
@@ -24639,15 +24670,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(15);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(26);
+var _axios = __webpack_require__(34);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -24669,43 +24698,24 @@ var VideosList = function (_React$Component) {
   function VideosList() {
     _classCallCheck(this, VideosList);
 
-    var _this = _possibleConstructorReturn(this, (VideosList.__proto__ || Object.getPrototypeOf(VideosList)).call(this));
-
-    _this.state = {
-      views: ''
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (VideosList.__proto__ || Object.getPrototypeOf(VideosList)).apply(this, arguments));
   }
 
   _createClass(VideosList, [{
     key: 'renderVideos',
-    value: function renderVideos(items, selectVideo) {
-      var _this2 = this;
-
-      if (!items) {
-        return _react2.default.createElement(
+    value: function renderVideos(videos, selectVideo) {
+      // console.log("render videos list", videos);
+      if (!videos) {
+        _react2.default.createElement(
           'p',
           null,
-          'Loading...'
+          'Loading ...'
         );
       }
-      return items.map(function (item, index) {
-        // console.log("mapping function", item);
-        var id = item.snippet.resourceId.videoId;
-        _axios2.default.get('https://www.googleapis.com/youtube/v3/videos', {
-          params: {
-            part: 'snippet,contentDetails,statistics',
-            id: id,
-            key: 'AIzaSyA-_-lElXcltZIBGaGiIqHiiYZIOO6bf1A'
-          }
-        }).then(function (res) {
-          console.log("Video Views: ", res);
-          _this2.setState({ views: res.data.items[0].statistics.viewCount });
-        }).catch(function (err) {
-          console.log(err);
-        });
-
-        return _react2.default.createElement(_Video2.default, _extends({ key: index, content: item, videoViews: _this2.state.views, runVideo: selectVideo }, _this2.props));
+      return videos.map(function (video, index) {
+        // console.log("mapping func - video", video);
+        // console.log("mapping func - select func", selectVideo);
+        return _react2.default.createElement(_Video2.default, { key: index, content: video, runVideo: selectVideo });
       });
     }
   }, {
