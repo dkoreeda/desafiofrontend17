@@ -2,12 +2,16 @@ import React from 'react';
 
 const CurrentVideo = (props) => {
 
-  console.log("current video", props);
-  let videoId = props.video.id;
-  if(!videoId){
-    videoId = props.video.snippet.resourceId.videoId;
+  // console.log("current video", props);
+  // let videoId = props.video.id;
+  // if(!videoId){
+  //   videoId = props.video.snippet.resourceId.videoId;
+  // }
+  // console.log("current video id", videoId);
+  let videoId = props.initial;
+  if(!props.initial) {
+    videoId = props.video.id;
   }
-  console.log("current video id", videoId);
 
   return(
       <div>

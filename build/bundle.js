@@ -10947,6 +10947,7 @@ var Home = function (_Component) {
 
     _this.state = {
       videos: [],
+      videoInicial: '',
       currentVideo: ''
     };
     return _this;
@@ -10965,8 +10966,11 @@ var Home = function (_Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        console.log(res);
-        _this2.setState({ currentVideo: res.data.items[0] });
+        // console.log(res);
+        _this2.setState({
+          videoInicial: res.data.items[0].snippet.resourceId.videoId,
+          currentVideo: res.data.items[0]
+        });
         _this2.fetchVideosIds(res.data.items);
       }).catch(function (err) {
         console.log(err);
@@ -11011,27 +11015,33 @@ var Home = function (_Component) {
     }
   }, {
     key: 'renderCurrentVideo',
-    value: function renderCurrentVideo(video) {
-      if (!video) {
+    value: function renderCurrentVideo(current, initial) {
+      if (!current) {
         return _react2.default.createElement(
           'p',
           null,
           'Loading...'
         );
       }
-      return _react2.default.createElement(_CurrentVideo2.default, { video: video });
+      return _react2.default.createElement(_CurrentVideo2.default, { video: current, initial: initial });
     }
   }, {
     key: 'selectVideo',
     value: function selectVideo(video) {
       console.log("video was clicked");
-      this.setState({ currentVideo: video });
+      this.setState({
+        currentVideo: video,
+        videoInicial: ''
+      });
     }
   }, {
     key: 'render',
     value: function render() {
       // console.log("items: ", this.state.items);
       console.log(this.state.currentVideo);
+      var currentVideo = this.state.currentVideo;
+      var initialVideo = this.state.videoInicial;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -11039,7 +11049,7 @@ var Home = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'main flex-columns' },
-          this.renderCurrentVideo(this.state.currentVideo),
+          this.renderCurrentVideo(currentVideo, initialVideo),
           _react2.default.createElement(
             'div',
             { id: 'videos-list' },
@@ -24467,12 +24477,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var CurrentVideo = function CurrentVideo(props) {
 
-  console.log("current video", props);
-  var videoId = props.video.id;
-  if (!videoId) {
-    videoId = props.video.snippet.resourceId.videoId;
+  // console.log("current video", props);
+  // let videoId = props.video.id;
+  // if(!videoId){
+  //   videoId = props.video.snippet.resourceId.videoId;
+  // }
+  // console.log("current video id", videoId);
+  var videoId = props.initial;
+  if (!props.initial) {
+    videoId = props.video.id;
   }
-  console.log("current video id", videoId);
 
   return _react2.default.createElement(
     "div",

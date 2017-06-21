@@ -10,6 +10,7 @@ class Home extends Component {
       super();
       this.state = {
         videos: [],
+        videoInicial: '',
         currentVideo: ''
       }
   }
@@ -24,8 +25,11 @@ class Home extends Component {
         }
       })
       .then((res) => {
-        console.log(res);
-        this.setState({currentVideo: res.data.items[0]});
+        // console.log(res);
+        this.setState({
+          videoInicial: res.data.items[0].snippet.resourceId.videoId,
+          currentVideo: res.data.items[0]
+        });
         this.fetchVideosIds(res.data.items);
       })
       .catch((err) => {console.log(err)})
@@ -61,27 +65,33 @@ class Home extends Component {
       .catch((err) => { console.log(err) });
   }
 
-  renderCurrentVideo(video) {
-    if(!video) {
+  renderCurrentVideo(current, initial) {
+    if(!current) {
       return <p>Loading...</p>
     }
-    return <CurrentVideo video={video} />
+    return <CurrentVideo video={current} initial={initial} />
 
   }
 
   selectVideo(video) {
       console.log("video was clicked");
-      this.setState({currentVideo: video});
+      this.setState({
+        currentVideo: video,
+        videoInicial: ''
+      });
   }
 
   render() {
     // console.log("items: ", this.state.items);
     console.log(this.state.currentVideo);
+    let currentVideo = this.state.currentVideo;
+    const initialVideo = this.state.videoInicial;
+
     return (
       <div>
         <Nav/>
         <div className="main flex-columns">
-          {this.renderCurrentVideo(this.state.currentVideo)}
+          {this.renderCurrentVideo(currentVideo, initialVideo)}
           <div id="videos-list">
             <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)}/>
           </div>
