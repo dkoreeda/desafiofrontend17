@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/video.scss';
 
 const Video = (props) => {
-    // console.log("Video.js", props.content);
+    // console.log("Video.js", props.runVideo);
     // <iframe style={{height: "128px", width: "170px"}}
     //   src={"http://www.youtube.com/embed/"+props.content.snippet.resourceId.videoId}>
     // </iframe>

@@ -2,6 +2,19 @@ import React from 'react';
 import Axios from 'axios';
 import Nav from './Nav';
 import VideosList from './VideosList';
+import CurrentVideo from './CurrentVideo';
+import Modal from 'react-modal';
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class AllVideosPage extends React.Component {
 
@@ -12,7 +25,8 @@ class AllVideosPage extends React.Component {
       counter: 0,
       videos: [],
       currentVideo: '',
-      matchVideos: []
+      matchVideos: [],
+      isModalOpen: false
     }
   }
 
@@ -98,7 +112,6 @@ class AllVideosPage extends React.Component {
         } else {
           this.setState({videos: res.data.items});
         }
-        // this.renderVideos(res.data.items);
       })
       .catch((err) => { console.log(err) });
   }
@@ -120,10 +133,15 @@ class AllVideosPage extends React.Component {
   }
 
   selectVideo(video) {
-      console.log("video was clicked");
+      console.log("video was clicked", video);
       this.setState({
+        isModalOpen: true,
         currentVideo: video
       });
+  }
+
+  closeModal() {
+    this.setState({isModalOpen: false});
   }
 
   loadVideos(items) {
@@ -132,55 +150,20 @@ class AllVideosPage extends React.Component {
   }
 
   dataSubmission(search) {
-    // console.log("submit search", search);
     this.searchPlaylists(search);
-      // Axios.get('https://www.googleapis.com/youtube/v3/search', {
-      //   params: {
-      //     maxResults: '12',
-      //     part: 'snippet',
-      //     q: search,
-      //     key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
-      //   }
-      // })
-      // .then((res) => {
-      //     console.log("fetch videos", res.data.items);
-      //     let result = res.data.items;
-      //     let resultIds = [];
-      //     result.map((item, index) => {
-      //       resultIds.push(item.id.videoId);
-      //     })
-
-      //     const jointIds = resultIds.join(',');
-
-      //     this.apiCall(jointIds);
-      // })
-      // .catch((err) => { console.log(err) });
-  }
-
-  renderCurrentVideo(video) {
-      if(!video) {
-        <p>Loading...</p>
-      } else {
-        let current = document.querySelector('#current');
-        if(current.style.display === "none"){
-          current.style.display = "block";
-        } else {
-          current.style.display = "none";
-        }
-      }
   }
 
   render() {
     // console.log("All Videos Page", this.state.videos);
-    console.log("matched videos", this.state.matchVideos);
+    // console.log("matched videos", this.state.matchVideos);
     return(
       <div>
         <Nav submit={this.dataSubmission.bind(this)}/>
         <div>
-          <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'12'}/>
-        </div>
-        <div id="current" style={{display: "none", zIndex:"2"}}>
-          {this.renderCurrentVideo(this.state.currentVideo)}
+            <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'12'}/>
+            <Modal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal.bind(this)} style={customStyles}>
+              <CurrentVideo video={this.state.currentVideo}/>
+            </Modal>
         </div>
       </div>
     );
