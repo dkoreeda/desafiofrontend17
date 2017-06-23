@@ -37,15 +37,16 @@ class VideosList extends React.Component {
   }
 
   selectPlaylist(res) {
-      this.setState({counter: this.state.counter+1});
       this.fetchNewVideos(res.data.items[this.state.counter].id);
+      this.setState({counter: this.state.counter+1});
   }
 
   fetchNewVideos(playlistId) {
+    let number = this.props.number;
       Axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
         params: {
           part: 'snippet,contentDetails',
-          maxResults: '4',
+          maxResults: number,
           playlistId: playlistId,
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }

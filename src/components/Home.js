@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Nav from './Nav';
+import Form from './Form';
 import VideosList from './VideosList';
 import CurrentVideo from './CurrentVideo';
 import '../css/home.scss';
@@ -26,10 +27,6 @@ class Home extends Component {
       })
       .then((res) => {
         // console.log(res);
-        // this.setState({
-        //   videoInicial: res.data.items[0].snippet.resourceId.videoId,
-        //   currentVideo: res.data.items[0]
-        // });
         this.fetchVideosIds(res.data.items);
       })
       .catch((err) => {console.log(err)})
@@ -90,6 +87,10 @@ class Home extends Component {
     this.setState({videos: this.state.videos.concat(items)});
   }
 
+  dataSubmission(search) {
+    console.log("submit search", search);
+  }
+
   render() {
     // console.log("items: ", this.state.items);
     // console.log(this.state.currentVideo);
@@ -99,11 +100,11 @@ class Home extends Component {
 
     return (
       <div>
-        <Nav/>
+        <Nav submit={this.dataSubmission.bind(this)}/>
         <div className="main flex-columns">
           {this.renderCurrentVideo(currentVideo, initialVideo)}
           <div id="videos-list">
-            <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)}/>
+            <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'4'}/>
           </div>
         </div>
       </div>
