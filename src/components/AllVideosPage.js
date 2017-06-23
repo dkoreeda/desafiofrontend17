@@ -11,11 +11,16 @@ class AllVideosPage extends React.Component {
       playlistId: '',
       counter: 0,
       videos: [],
-      currentVideo: ''
+      currentVideo: '',
+      matchVideos: []
     }
   }
 
   componentDidMount() {
+    this.searchPlaylists();
+  }
+
+  searchPlaylists(search) {
       Axios.get('https://www.googleapis.com/youtube/v3/playlists', {
           params: {
             part: 'snippet,contentDetails',
@@ -25,9 +30,22 @@ class AllVideosPage extends React.Component {
           }
       })
       .then((res) => {
-        console.log("component did mount", res);
-        this.selectPlaylist(res)})
+        // console.log("component did mount", res);
+        if(search) {
+          this.searchQuery(res, search);
+        } else {
+          this.selectPlaylist(res);
+        }
+      })
       .catch((err) => {console.log(err)})
+  }
+
+  searchQuery(res, search) {
+    // console.log("searchQuery", res);
+    return res.data.items.map((playlist, index) => {
+      // console.log(playlist);
+      return this.fetchNewVideos(res.data.items[0].id, search);
+    })
   }
 
   selectPlaylist(res) {
@@ -35,7 +53,7 @@ class AllVideosPage extends React.Component {
       this.setState({counter: this.state.counter+1});
   }
 
-  fetchNewVideos(playlistId) {
+  fetchNewVideos(playlistId, search) {
       Axios.get('https://www.googleapis.com/youtube/v3/playlistItems', {
         params: {
           part: 'snippet,contentDetails',
@@ -46,12 +64,12 @@ class AllVideosPage extends React.Component {
       })
       .then((res) => {
         // console.log(res);
-        this.fetchNewVideosIds(res.data.items);
+        this.fetchNewVideosIds(res.data.items, search);
       })
       .catch((err) => {console.log(err)})
   }
 
-  fetchNewVideosIds(videos) {
+  fetchNewVideosIds(videos, search) {
       let videosIds = [];
       if(!videos) {
         return <p>Loading...</p>
@@ -62,10 +80,10 @@ class AllVideosPage extends React.Component {
       });
 
       const jointIds = videosIds.join(',');
-      this.apiCall(jointIds);
+      this.apiCall(jointIds, search);
   }
 
-  apiCall(jointIds) {
+  apiCall(jointIds, search) {
       Axios.get('https://www.googleapis.com/youtube/v3/videos', {
         params: {
           part: 'snippet,contentDetails,statistics',
@@ -75,11 +93,30 @@ class AllVideosPage extends React.Component {
       })
       .then((res) => {
         // console.log("fetch videos", res);
-        this.setState({videos: res.data.items});
+        if(search) {
+          this.matchQuery(res.data.items, search);
+        } else {
+          this.setState({videos: res.data.items});
+        }
         // this.renderVideos(res.data.items);
-
       })
       .catch((err) => { console.log(err) });
+  }
+
+  matchQuery(res, search) {
+      // console.log(res);
+      // console.log(search);
+      let videos = [];
+      const regexSearch = new RegExp('('+search+')', 'ig');
+      res.map((video, index) => {
+        let videoTitle = video.snippet.title;
+        console.log(videoTitle);
+        let videoDescription = video.snippet.description;
+        if(videoTitle.match(regexSearch) || videoDescription.match(regexSearch)) {
+            videos.push(video);
+        }
+      })
+      this.setState({videos: videos});
   }
 
   selectVideo(video) {
@@ -96,27 +133,28 @@ class AllVideosPage extends React.Component {
 
   dataSubmission(search) {
     // console.log("submit search", search);
-      Axios.get('https://www.googleapis.com/youtube/v3/search', {
-        params: {
-          maxResults: '12',
-          part: 'snippet',
-          q: search,
-          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
-        }
-      })
-      .then((res) => {
-          console.log("fetch videos", res.data.items);
-          let result = res.data.items;
-          let resultIds = [];
-          result.map((item, index) => {
-            resultIds.push(item.id.videoId);
-          })
+    this.searchPlaylists(search);
+      // Axios.get('https://www.googleapis.com/youtube/v3/search', {
+      //   params: {
+      //     maxResults: '12',
+      //     part: 'snippet',
+      //     q: search,
+      //     key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+      //   }
+      // })
+      // .then((res) => {
+      //     console.log("fetch videos", res.data.items);
+      //     let result = res.data.items;
+      //     let resultIds = [];
+      //     result.map((item, index) => {
+      //       resultIds.push(item.id.videoId);
+      //     })
 
-          const jointIds = resultIds.join(',');
+      //     const jointIds = resultIds.join(',');
 
-          this.apiCall(jointIds);
-      })
-      .catch((err) => { console.log(err) });
+      //     this.apiCall(jointIds);
+      // })
+      // .catch((err) => { console.log(err) });
   }
 
   renderCurrentVideo(video) {
@@ -134,6 +172,7 @@ class AllVideosPage extends React.Component {
 
   render() {
     // console.log("All Videos Page", this.state.videos);
+    console.log("matched videos", this.state.matchVideos);
     return(
       <div>
         <Nav submit={this.dataSubmission.bind(this)}/>

@@ -12763,7 +12763,7 @@ var Form = function (_Component) {
   _createClass(Form, [{
     key: 'handleChange',
     value: function handleChange(e) {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       this.setState({ keyword: e.target.value });
     }
   }, {
@@ -13069,8 +13069,8 @@ var VideosList = function (_React$Component) {
     value: function render() {
       var _this5 = this;
 
-      console.log("VideoList playlist id", this.state.playlistId);
-      console.log("counter", this.state.counter);
+      // console.log("VideoList playlist id", this.state.playlistId);
+      // console.log("counter", this.state.counter);
       return _react2.default.createElement(
         'div',
         null,
@@ -28770,7 +28770,8 @@ var AllVideosPage = function (_React$Component) {
       playlistId: '',
       counter: 0,
       videos: [],
-      currentVideo: ''
+      currentVideo: '',
+      matchVideos: []
     };
     return _this;
   }
@@ -28778,6 +28779,11 @@ var AllVideosPage = function (_React$Component) {
   _createClass(AllVideosPage, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      this.searchPlaylists();
+    }
+  }, {
+    key: 'searchPlaylists',
+    value: function searchPlaylists(search) {
       var _this2 = this;
 
       _axios2.default.get('https://www.googleapis.com/youtube/v3/playlists', {
@@ -28788,10 +28794,25 @@ var AllVideosPage = function (_React$Component) {
           key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
         }
       }).then(function (res) {
-        console.log("component did mount", res);
-        _this2.selectPlaylist(res);
+        // console.log("component did mount", res);
+        if (search) {
+          _this2.searchQuery(res, search);
+        } else {
+          _this2.selectPlaylist(res);
+        }
       }).catch(function (err) {
         console.log(err);
+      });
+    }
+  }, {
+    key: 'searchQuery',
+    value: function searchQuery(res, search) {
+      var _this3 = this;
+
+      // console.log("searchQuery", res);
+      return res.data.items.map(function (playlist, index) {
+        // console.log(playlist);
+        return _this3.fetchNewVideos(res.data.items[0].id, search);
       });
     }
   }, {
@@ -28802,8 +28823,8 @@ var AllVideosPage = function (_React$Component) {
     }
   }, {
     key: 'fetchNewVideos',
-    value: function fetchNewVideos(playlistId) {
-      var _this3 = this;
+    value: function fetchNewVideos(playlistId, search) {
+      var _this4 = this;
 
       _axios2.default.get('https://www.googleapis.com/youtube/v3/playlistItems', {
         params: {
@@ -28814,14 +28835,14 @@ var AllVideosPage = function (_React$Component) {
         }
       }).then(function (res) {
         // console.log(res);
-        _this3.fetchNewVideosIds(res.data.items);
+        _this4.fetchNewVideosIds(res.data.items, search);
       }).catch(function (err) {
         console.log(err);
       });
     }
   }, {
     key: 'fetchNewVideosIds',
-    value: function fetchNewVideosIds(videos) {
+    value: function fetchNewVideosIds(videos, search) {
       var videosIds = [];
       if (!videos) {
         return _react2.default.createElement(
@@ -28836,12 +28857,12 @@ var AllVideosPage = function (_React$Component) {
       });
 
       var jointIds = videosIds.join(',');
-      this.apiCall(jointIds);
+      this.apiCall(jointIds, search);
     }
   }, {
     key: 'apiCall',
-    value: function apiCall(jointIds) {
-      var _this4 = this;
+    value: function apiCall(jointIds, search) {
+      var _this5 = this;
 
       _axios2.default.get('https://www.googleapis.com/youtube/v3/videos', {
         params: {
@@ -28851,11 +28872,32 @@ var AllVideosPage = function (_React$Component) {
         }
       }).then(function (res) {
         // console.log("fetch videos", res);
-        _this4.setState({ videos: res.data.items });
+        if (search) {
+          _this5.matchQuery(res.data.items, search);
+        } else {
+          _this5.setState({ videos: res.data.items });
+        }
         // this.renderVideos(res.data.items);
       }).catch(function (err) {
         console.log(err);
       });
+    }
+  }, {
+    key: 'matchQuery',
+    value: function matchQuery(res, search) {
+      // console.log(res);
+      // console.log(search);
+      var videos = [];
+      var regexSearch = new RegExp('(' + search + ')', 'ig');
+      res.map(function (video, index) {
+        var videoTitle = video.snippet.title;
+        console.log(videoTitle);
+        var videoDescription = video.snippet.description;
+        if (videoTitle.match(regexSearch) || videoDescription.match(regexSearch)) {
+          videos.push(video);
+        }
+      });
+      this.setState({ videos: videos });
     }
   }, {
     key: 'selectVideo',
@@ -28874,30 +28916,29 @@ var AllVideosPage = function (_React$Component) {
   }, {
     key: 'dataSubmission',
     value: function dataSubmission(search) {
-      var _this5 = this;
-
       // console.log("submit search", search);
-      _axios2.default.get('https://www.googleapis.com/youtube/v3/search', {
-        params: {
-          maxResults: '12',
-          part: 'snippet',
-          q: search,
-          key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
-        }
-      }).then(function (res) {
-        console.log("fetch videos", res.data.items);
-        var result = res.data.items;
-        var resultIds = [];
-        result.map(function (item, index) {
-          resultIds.push(item.id.videoId);
-        });
+      this.searchPlaylists(search);
+      // Axios.get('https://www.googleapis.com/youtube/v3/search', {
+      //   params: {
+      //     maxResults: '12',
+      //     part: 'snippet',
+      //     q: search,
+      //     key: 'AIzaSyCmXWIHpnA-fIuLrqfzr9PaeonezFtnmm4'
+      //   }
+      // })
+      // .then((res) => {
+      //     console.log("fetch videos", res.data.items);
+      //     let result = res.data.items;
+      //     let resultIds = [];
+      //     result.map((item, index) => {
+      //       resultIds.push(item.id.videoId);
+      //     })
 
-        var jointIds = resultIds.join(',');
+      //     const jointIds = resultIds.join(',');
 
-        _this5.apiCall(jointIds);
-      }).catch(function (err) {
-        console.log(err);
-      });
+      //     this.apiCall(jointIds);
+      // })
+      // .catch((err) => { console.log(err) });
     }
   }, {
     key: 'renderCurrentVideo',
@@ -28921,6 +28962,7 @@ var AllVideosPage = function (_React$Component) {
     key: 'render',
     value: function render() {
       // console.log("All Videos Page", this.state.videos);
+      console.log("matched videos", this.state.matchVideos);
       return _react2.default.createElement(
         'div',
         null,

@@ -85,8 +85,8 @@ class VideosList extends React.Component {
   }
 
   render() {
-    console.log("VideoList playlist id", this.state.playlistId);
-    console.log("counter", this.state.counter);
+    // console.log("VideoList playlist id", this.state.playlistId);
+    // console.log("counter", this.state.counter);
     return(
       <div>
         { this.renderVideos(this.props.videos, this.props.selectVideo) }
