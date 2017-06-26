@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/video.scss';
 
 const Video = (props) => {
     // console.log("Video.js", props.runVideo);

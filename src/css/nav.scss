@@ -1,10 +1,27 @@
-@import "reset";
-
 #nav {
   height: 50px;
-  width: 100%;
+  width: 80%;
   padding: 0 10% 0 10%;
   position: fixed;
   background-color: #a8395c;
   top: 0;
+  display: flex;
+  justify-content: space-between;
+  img {
+    width: 150px;
+    height: auto;
+    padding: 10px 0;
+  }
+  #menu-options {
+    display: none;
+    position: relative;
+    width: 200px;
+    padding: 10px;
+    background-color: white;
+    a {
+      display: block;
+      text-decoration: none;
+      color: gray;
+    }
+  }
 }

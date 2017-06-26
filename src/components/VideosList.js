@@ -12,18 +12,25 @@ class VideosList extends React.Component {
   }
 
   renderVideos(videos, selectVideo) {
-    // console.log("render videos list", videos);
     if(!videos) {
       <p>Loading ...</p>
     }
     return videos.map((video, index) => {
-      // console.log("mapping func - video", video);
-      // console.log("mapping func - select func", selectVideo);
       return <Video key={index} content={video} runVideo={selectVideo}/>
     })
   }
 
   loadMoreVideos(e) {
+      const loadingBtn = document.querySelector('.windows8');
+      if(loadingBtn.style.display === "none") {
+        loadingBtn.style.display = "block";
+      } else {
+        loadingBtn.style.display = "none";
+      }
+      setInterval(this.fetchPlaylist(), 5000);
+  }
+
+  fetchPlaylist() {
       Axios.get('https://www.googleapis.com/youtube/v3/playlists', {
           params: {
             part: 'snippet,contentDetails',
@@ -52,7 +59,6 @@ class VideosList extends React.Component {
         }
       })
       .then((res) => {
-        // console.log(res);
         this.fetchNewVideosIds(res.data.items);
       })
       .catch((err) => {console.log(err)})
@@ -78,19 +84,43 @@ class VideosList extends React.Component {
         }
       })
       .then((res) => {
-        // console.log("fetch videos", res);
+        const loadingBtn = document.querySelector('.windows8');
+        if(loadingBtn.style.display === "none") {
+          loadingBtn.style.display = "block";
+        } else {
+          loadingBtn.style.display = "none";
+        }
         this.props.loadMoreVideos(res.data.items);
       })
       .catch((err) => { console.log(err) });
   }
 
   render() {
-    // console.log("VideoList playlist id", this.state.playlistId);
-    // console.log("counter", this.state.counter);
     return(
-      <div>
-        { this.renderVideos(this.props.videos, this.props.selectVideo) }
-        <button onClick={(e) => this.loadMoreVideos(e)}>CARREGAR MAIS VIDEOS...</button>
+      <div id="videos">
+        <div id="list">
+          { this.renderVideos(this.props.videos, this.props.selectVideo) }
+        </div>
+        <div id="loading">
+          <button onClick={(e) => this.loadMoreVideos(e)}>CARREGAR MAIS VIDEOS...</button>
+          <div className="windows8" style={{display: "none"}}>
+            <div className="wBall" id="wBall_1">
+              <div className="wInnerBall"></div>
+            </div>
+            <div className="wBall" id="wBall_2">
+              <div className="wInnerBall"></div>
+            </div>
+            <div className="wBall" id="wBall_3">
+              <div className="wInnerBall"></div>
+            </div>
+            <div className="wBall" id="wBall_4">
+              <div className="wInnerBall"></div>
+            </div>
+            <div className="wBall" id="wBall_5">
+              <div className="wInnerBall"></div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

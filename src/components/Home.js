@@ -92,9 +92,6 @@ class Home extends Component {
   }
 
   render() {
-    // console.log("items: ", this.state.items);
-    // console.log(this.state.currentVideo);
-    // console.log("load more videos", this.state.videos);
     let currentVideo = this.state.currentVideo;
     const initialVideo = this.state.videoInicial;
 
@@ -102,8 +99,12 @@ class Home extends Component {
       <div>
         <Nav submit={this.dataSubmission.bind(this)}/>
         <div className="main flex-columns">
-          {this.renderCurrentVideo(currentVideo, initialVideo)}
+          <div id="current-video">
+            <h1>Video em destaque</h1>
+            {this.renderCurrentVideo(currentVideo, initialVideo)}
+          </div>
           <div id="videos-list">
+            <h1>+ Videos</h1>
             <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'4'}/>
           </div>
         </div>

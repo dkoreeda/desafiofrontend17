@@ -2,11 +2,12 @@ import React from 'react';
 import '../css/nav.scss';
 import { Link } from 'react-router-dom';
 import Form from './Form';
+import logo from '../css/img/ficticia.png';
 
 class Nav extends React.Component {
   showMenu() {
     console.log("clicked");
-    const menu = document.querySelector('#menu');
+    const menu = document.querySelector('#menu-options');
     if(menu.style.display === "none") {
       menu.style.display = "block";
     } else {
@@ -32,12 +33,15 @@ class Nav extends React.Component {
     console.log(this.props);
       return (
         <div id="nav">
-          <span id="search" onClick={() => this.busca()}>Search</span>
-          <Form handleDataSubmission={this.handleSubmission.bind(this)}/>
-          <span id="burger" onClick={() => this.showMenu()}>Menu &#9776;</span>
-          <div id="menu" style={{display: "none", width: "50px", height: "50px"}} >
-            <Link to="/destaque">Destaques</Link>
-            <Link to="/videos" >Videos</Link>
+          <img src={logo} alt="logo" />
+          <div id="menu">
+            <span id="search" onClick={() => this.busca()}>Search</span>
+            <Form handleDataSubmission={this.handleSubmission.bind(this)}/>
+            <span id="burger" onClick={() => this.showMenu()}>Menu &#9776;</span>
+            <div id="menu-options">
+              <Link to="/destaque">Destaques</Link>
+              <Link to="/videos" >Videos</Link>
+            </div>
           </div>
         </div>
       );
