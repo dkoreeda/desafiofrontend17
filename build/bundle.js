@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 276);
+/******/ 	return __webpack_require__(__webpack_require__.s = 278);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -7753,7 +7753,7 @@ var _CurrentVideo = __webpack_require__(108);
 
 var _CurrentVideo2 = _interopRequireDefault(_CurrentVideo);
 
-__webpack_require__(274);
+__webpack_require__(276);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12609,7 +12609,7 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(275);
+__webpack_require__(277);
 
 var _reactRouterDom = __webpack_require__(101);
 
@@ -12617,9 +12617,17 @@ var _Form = __webpack_require__(109);
 
 var _Form2 = _interopRequireDefault(_Form);
 
-var _ficticia = __webpack_require__(273);
+var _ficticia = __webpack_require__(274);
 
 var _ficticia2 = _interopRequireDefault(_ficticia);
+
+var _destaque = __webpack_require__(273);
+
+var _destaque2 = _interopRequireDefault(_destaque);
+
+var _videos = __webpack_require__(275);
+
+var _videos2 = _interopRequireDefault(_videos);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12691,20 +12699,22 @@ var Nav = function (_React$Component) {
             { id: 'burger', onClick: function onClick() {
                 return _this2.showMenu();
               } },
-            'Menu \u2630'
-          ),
-          _react2.default.createElement(
-            'div',
-            { id: 'menu-options' },
+            'Menu \u2630',
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/destaque' },
-              'Destaques'
-            ),
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/videos' },
-              'Videos'
+              'div',
+              { id: 'menu-options' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/destaque' },
+                _react2.default.createElement('img', { src: _destaque2.default, alt: 'link destaque' }),
+                'Destaques'
+              ),
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/videos' },
+                _react2.default.createElement('img', { src: _videos2.default, alt: 'link videos' }),
+                'Videos'
+              )
             )
           )
         )
@@ -30215,7 +30225,7 @@ exports = module.exports = __webpack_require__(70)(undefined);
 
 
 // module
-exports.push([module.i, "#root {\n  font-size: 18px;\n  font-family: 'Titillium Web', sans-serif; }\n  #root .flex-columns {\n    display: flex;\n    flex-wrap: wrap; }\n\n.main {\n  padding: 0 10% 0 10%;\n  margin-top: 7%;\n  width: 80%;\n  justify-content: space-between; }\n\n#current-video {\n  width: 55%;\n  height: 500px; }\n  #current-video h1 {\n    font-size: 2em; }\n  #current-video iframe {\n    width: 100%;\n    height: 313px;\n    margin-bottom: 30px; }\n  #current-video .info-box {\n    height: 100px;\n    border: 1px solid #ddd;\n    overflow: scroll;\n    padding: 22.5px;\n    font-size: 14px; }\n    #current-video .info-box #headline {\n      display: flex;\n      justify-content: space-between; }\n      #current-video .info-box #headline h3 {\n        color: #a8395c;\n        font-size: 1em; }\n\n#videos-list {\n  width: 42%;\n  height: 500px; }\n  #videos-list h1 {\n    font-size: 2em; }\n  #videos-list #videos {\n    border: solid 1px #ddd;\n    overflow: scroll;\n    height: 100%; }\n    #videos-list #videos #list {\n      z-index: -1; }\n      #videos-list #videos #list .video {\n        display: flex; }\n        #videos-list #videos #list .video img {\n          width: 170px;\n          height: 95px;\n          padding: 8px; }\n    #videos-list #videos #loading {\n      z-index: 2; }\n  #videos-list .content {\n    width: 50%; }\n    #videos-list .content h3 {\n      color: #a8395c; }\n  #videos-list h3 {\n    font-size: 1em; }\n", ""]);
+exports.push([module.i, "#root {\n  font-size: 18px;\n  font-family: 'Titillium Web', sans-serif; }\n  #root .flex-columns {\n    display: flex;\n    flex-wrap: wrap; }\n\n.main {\n  padding: 0 10% 0 10%;\n  margin-top: 3%;\n  width: 80%;\n  justify-content: space-between; }\n\n#current-video {\n  width: 55%;\n  height: 500px; }\n  #current-video h1 {\n    font-size: 2em; }\n  #current-video iframe {\n    width: 100%;\n    height: 313px;\n    margin-bottom: 30px; }\n  #current-video .info-box {\n    height: 100px;\n    border: 1px solid #ddd;\n    overflow: scroll;\n    padding: 22.5px;\n    font-size: 14px; }\n    #current-video .info-box #headline {\n      display: flex;\n      justify-content: space-between; }\n      #current-video .info-box #headline h3 {\n        color: #a8395c;\n        font-size: 1em; }\n\n#videos-list {\n  width: 42%;\n  height: 500px; }\n  #videos-list h1 {\n    font-size: 2em; }\n  #videos-list #videos {\n    border: solid 1px #ddd;\n    overflow: scroll;\n    height: 100%; }\n    #videos-list #videos #list {\n      z-index: -1; }\n      #videos-list #videos #list .video {\n        display: flex; }\n        #videos-list #videos #list .video img {\n          width: 170px;\n          height: 95px;\n          padding: 8px; }\n    #videos-list #videos #loading {\n      z-index: 2; }\n  #videos-list .content {\n    width: 50%; }\n    #videos-list .content h3 {\n      color: #a8395c; }\n  #videos-list h3 {\n    font-size: 1em; }\n", ""]);
 
 // exports
 
@@ -30229,7 +30239,7 @@ exports = module.exports = __webpack_require__(70)(undefined);
 
 
 // module
-exports.push([module.i, "#nav {\n  height: 50px;\n  width: 80%;\n  padding: 0 10% 0 10%;\n  position: fixed;\n  background-color: #a8395c;\n  top: 0;\n  display: flex;\n  justify-content: space-between; }\n  #nav img {\n    width: 150px;\n    height: auto;\n    padding: 10px 0; }\n  #nav #menu-options {\n    display: none;\n    position: relative;\n    width: 200px;\n    padding: 10px;\n    background-color: white; }\n    #nav #menu-options a {\n      display: block;\n      text-decoration: none;\n      color: gray; }\n", ""]);
+exports.push([module.i, "#nav {\n  height: 50px;\n  width: 80%;\n  padding: 0 10% 0 10%;\n  position: fixed;\n  background-color: #a8395c;\n  color: white;\n  top: 0;\n  display: flex;\n  justify-content: space-between; }\n  #nav img {\n    width: 150px;\n    height: auto;\n    padding: 10px; }\n  #nav #menu {\n    width: 300px;\n    text-align: right;\n    padding: 10px;\n    font-size: 0.85em;\n    letter-spacing: 0.5px;\n    position: relative; }\n    #nav #menu span {\n      padding-right: 10px; }\n    #nav #menu #menu-options {\n      display: none;\n      margin-top: 15px;\n      padding: 0 10px;\n      position: absolute;\n      width: 80%;\n      right: 0px;\n      text-align: left;\n      font-size: 0.9em;\n      background-color: white;\n      border: 1px solid gray; }\n      #nav #menu #menu-options a {\n        display: flex;\n        text-decoration: none;\n        color: gray;\n        align-items: center; }\n        #nav #menu #menu-options a img {\n          width: 50px;\n          height: auto;\n          padding: 10px; }\n", ""]);
 
 // exports
 
@@ -30238,10 +30248,22 @@ exports.push([module.i, "#nav {\n  height: 50px;\n  width: 80%;\n  padding: 0 10
 /* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ddd9b946d058e1876dd11fe221ae6b2a.png";
+module.exports = __webpack_require__.p + "bb0a544766cd7c59e837d26da8c61c11.png";
 
 /***/ }),
 /* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ddd9b946d058e1876dd11fe221ae6b2a.png";
+
+/***/ }),
+/* 275 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "9cb5f7daa4ed3aabfef643207486420c.png";
+
+/***/ }),
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -30272,7 +30294,7 @@ if(false) {
 }
 
 /***/ }),
-/* 275 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -30303,7 +30325,7 @@ if(false) {
 }
 
 /***/ }),
-/* 276 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

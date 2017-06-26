@@ -4,24 +4,47 @@
   padding: 0 10% 0 10%;
   position: fixed;
   background-color: #a8395c;
+  color: white;
   top: 0;
   display: flex;
   justify-content: space-between;
   img {
     width: 150px;
     height: auto;
-    padding: 10px 0;
-  }
-  #menu-options {
-    display: none;
-    position: relative;
-    width: 200px;
     padding: 10px;
-    background-color: white;
-    a {
-      display: block;
-      text-decoration: none;
-      color: gray;
+  }
+  #menu{
+    width: 300px;
+    text-align: right;
+    padding: 10px;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+    position: relative;
+    span {
+      padding-right: 10px;
+    }
+    #menu-options {
+      display: none;
+      margin-top: 15px;
+      padding: 0 10px;
+      position: absolute;
+      width: 80%;
+      right: 0px;
+      text-align: left;
+      font-size: 0.9em;
+      background-color: white;
+      border: 1px solid gray;
+      a {
+        display: flex;
+        text-decoration: none;
+        color: gray;
+        align-items: center;
+        img {
+          width: 50px;
+          height: auto;
+          padding: 10px;
+        }
+      }
     }
   }
 }
