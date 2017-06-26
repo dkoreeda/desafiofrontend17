@@ -4,6 +4,7 @@ import Nav from './Nav';
 import VideosList from './VideosList';
 import CurrentVideo from './CurrentVideo';
 import Modal from 'react-modal';
+// import '../css/showall.scss';
 
 const customStyles = {
   content : {
@@ -156,11 +157,13 @@ class AllVideosPage extends React.Component {
   render() {
     // console.log("All Videos Page", this.state.videos);
     // console.log("matched videos", this.state.matchVideos);
+    const allvideos = "allvideos";
     return(
       <div>
         <Nav submit={this.dataSubmission.bind(this)}/>
-        <div>
-            <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'12'}/>
+        <div className="main">
+            <h1>Todos os Videos do Canal</h1>
+            <VideosList class={allvideos} videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'12'}/>
             <Modal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal.bind(this)} style={customStyles}>
               <CurrentVideo video={this.state.currentVideo}/>
             </Modal>

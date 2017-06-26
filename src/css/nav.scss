@@ -6,45 +6,78 @@
   background-color: #a8395c;
   color: white;
   top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
-  img {
+  #logo {
     width: 150px;
     height: auto;
     padding: 10px;
   }
   #menu{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     width: 300px;
-    text-align: right;
     padding: 10px;
     font-size: 0.85em;
     letter-spacing: 0.5px;
     position: relative;
-    span {
-      padding-right: 10px;
+    #search {
+      padding-right: 15px;
+      position: relative;
+      cursor: pointer;
+      z-index: 5;
+      img {
+        width: 30px;
+        height: auto;
+        z-index: 5;
+      }
     }
-    #menu-options {
-      display: none;
-      margin-top: 15px;
-      padding: 0 10px;
+    #busca {
+      width: 100%;
+      height: auto;
+      left: 0;
       position: absolute;
-      width: 80%;
-      right: 0px;
-      text-align: left;
-      font-size: 0.9em;
-      background-color: white;
-      border: 1px solid gray;
-      a {
-        display: flex;
-        text-decoration: none;
-        color: gray;
-        align-items: center;
-        img {
-          width: 50px;
-          height: auto;
-          padding: 10px;
+      input[type="text"] {
+        background-color: rgba(255, 255, 255, 0);
+        width: 70%;
+        height: 30px;
+        transition: width 0.4s ease-in-out;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+      }
+      &:focus {
+        width: 100%;
+      }
+    }
+    #burger {
+      padding-right: 10px;
+      cursor: pointer;
+      #menu-options {
+        display: none;
+        margin-top: 15px;
+        padding: 0 10px;
+        position: absolute;
+        width: 80%;
+        right: 0px;
+        text-align: left;
+        font-size: 0.9em;
+        background-color: white;
+        border: 1px solid gray;
+        a {
+          display: flex;
+          text-decoration: none;
+          color: gray;
+          align-items: center;
+          img {
+            width: 50px;
+            height: auto;
+            padding: 10px;
+          }
         }
       }
     }
+
   }
 }

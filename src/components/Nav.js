@@ -3,6 +3,7 @@ import '../css/nav.scss';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 import logo from '../css/img/ficticia.png';
+import search from '../css/img/search.png';
 import destaque from '../css/img/destaque.png';
 import videos from '../css/img/videos.png';
 
@@ -35,12 +36,12 @@ class Nav extends React.Component {
     console.log(this.props);
       return (
         <div id="nav">
-          <img src={logo} alt="logo" />
+          <Link to="/"><img id="logo" src={logo} alt="logo" /></Link>
           <div id="menu">
-            <span id="search" onClick={() => this.busca()}>Search</span>
+            <span id="search" onClick={() => this.busca()}><img src={search} alt="magnified glass"/></span>
             <Form handleDataSubmission={this.handleSubmission.bind(this)}/>
             <span id="burger" onClick={() => this.showMenu()}>Menu &#9776;
-              <div id="menu-options">
+              <div style={{display: "none"}} id="menu-options">
                 <Link to="/destaque"><img src={destaque} alt="link destaque" />Destaques</Link>
                 <Link to="/videos"><img src={videos} alt="link videos" />Videos</Link>
               </div>

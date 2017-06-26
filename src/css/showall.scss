@@ -1,0 +1,50 @@
+@import "body";
+
+.main {
+  padding: 0 10% 0 10%;
+  margin-top: 5%;
+  width: 80%;
+  justify-content: space-between;
+}
+
+#videos {
+  #list {
+    display: flex;
+    flex-wrap: wrap;
+    .video {
+      display: flex;
+      align-items: center;
+      width: 30%;
+      justify-content: space-between;
+      margin: 0 2% 0 0;
+      .img {
+        width: 60%;
+        img {
+          width: 180px;
+          height: 95px;
+        }
+
+      }
+      .content {
+        .content-box {
+          padding: 8px;
+          h3 {
+            color: #a8395c;
+            font-size: 1em;
+          }
+          .info {
+            display: flex;
+            align-items: center;
+            img {
+              width: 30px;
+              height: auto;
+            }
+            span {
+              font-size: 0.7em;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -24,14 +24,13 @@ class Form extends Component {
 
   render() {
     return (
-      <div id="busca" style={{display: "none"}} className="form">
+      <div id="busca" className="form" style={{display: "none"}}>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <input
             type="text"
             value={this.state.keyword}
             onChange={(e) => this.handleChange(e)}
           />
-          <input type="submit" value="Submit" />
         </form>
       </div>
     )

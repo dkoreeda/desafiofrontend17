@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-// import Nav from './components/Nav';
 import Home from './components/Home';
 import ShowAllVideos from './components/AllVideosPage';
 

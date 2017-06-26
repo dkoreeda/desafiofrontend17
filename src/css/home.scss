@@ -9,10 +9,10 @@
 
 #current-video {
   width: 55%;
-  height: 500px;
-  // margin-right: 2%;
+  height: 540px;
   h1{
     font-size: 2em;
+    color: #a8395c;
   }
   iframe {
     width: 100%;
@@ -20,57 +20,148 @@
     margin-bottom: 30px;
   }
   .info-box {
-    height: 100px;
+    height: 160px;
     border: 1px solid #ddd;
-    overflow: scroll;
+    overflow: hidden;
     padding: 22.5px;
     font-size: 14px;
     #headline {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       h3 {
         color: #a8395c;
         font-size: 1em;
+      }
+      #current-info {
+        display: flex;
+        span {
+          display: none;
+          position: absolute;
+          width: 150px;
+          right: 0;
+          top: -50px;
+          height: auto;
+          background-color: white;
+          border: 1px solid gray;
+          padding: 10px;
+        }
+        .stats {
+          position: relative;
+          img {
+            width: 30px;
+            height: auto;
+          }
+          &:hover {
+            #published-views {
+              display: block;
+            }
+          }
+        }
+        .published {
+          position: relative;
+          img {
+            width: 30px;
+            height: auto;
+          }
+          &:hover {
+            #published-date {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+    #info-box:after {
+      position: absolute;
+      content: '';
+      left: 0px;
+      top: 0px;
+      height: 100%;
+      width: 100%;
+      background: -webkit-linear-gradient(transparent, gray);
+      background: -o-linear-gradient(transparent, gray);
+      background: linear-gradient(transparent, gray);
+    }
+  }
+}
+
+@mixin video($value, $width) {
+  .video {
+    display: flex;
+    cursor: pointer;
+    width: $width;
+    img {
+      width: $value;
+      height: auto;
+      padding: 8px;
+    }
+    .content {
+      .content-box {
+        padding: 8px;
+        h3 {
+          color: #a8395c;
+          font-size: 1em;
+        }
+        .info {
+          display: flex;
+          align-items: center;
+          img {
+            width: 30px;
+            height: auto;
+          }
+          span {
+            font-size: 0.7em;
+          }
+        }
       }
     }
   }
 }
 
+@mixin loading($value) {
+  z-index: 2;
+  position: relative;
+  margin: 10% 0;
+  button {
+    width: $value;
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+  }
+}
+
 #videos-list {
   width: 42%;
-  height: 500px;
-  // padding: 8px;
+  height: 540px;
   h1 {
     font-size: 2em;
+    color: #a8395c;
   }
   #videos {
     border: solid 1px #ddd;
     overflow: scroll;
     height: 100%;
+    padding: 8px;
     #list {
       z-index: -1;
-      .video {
-        display: flex;
-        img {
-          width: 170px;
-          height: 95px;
-          padding: 8px;
-        }
-      }
+      @include video(170px, 100%);
     }
-    #loading {
-      z-index: 2;
+    .list {
+      @include loading(100%);
+    }
+    .allvideos {
+      @include loading(50%);
     }
   }
-  .content {
-    width: 50%;
-    h3 {
-      color: #a8395c;
-    }
-  }
-  h3 {
-    font-size: 1em;
-  }
+}
+
+#allvideos {
+  display: flex;
+  flex-wrap: wrap;
+    @include video(180px, 30%);
 }
 
 

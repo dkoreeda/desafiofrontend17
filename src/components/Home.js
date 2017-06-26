@@ -94,6 +94,7 @@ class Home extends Component {
   render() {
     let currentVideo = this.state.currentVideo;
     const initialVideo = this.state.videoInicial;
+    const videos = "list";
 
     return (
       <div>
@@ -105,7 +106,7 @@ class Home extends Component {
           </div>
           <div id="videos-list">
             <h1>+ Videos</h1>
-            <VideosList videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'4'}/>
+            <VideosList class={videos} videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'4'}/>
           </div>
         </div>
       </div>
