@@ -7,7 +7,7 @@ class VideosList extends React.Component {
     super();
     this.state = {
       playlistId: '',
-      counter: 0
+      counter: 1
     }
   }
 

@@ -137,7 +137,7 @@
 }
 
 @mixin loading($value, $top, $center) {
-  z-index: 2;
+  z-index: 0;
   position: relative;
   margin: $top $center;
   button {
@@ -163,7 +163,7 @@
     height: 100%;
     padding: 8px;
     #list {
-      z-index: -1;
+      z-index: -5;
       @include video(170px, 100%);
     }
     .list {
@@ -200,12 +200,16 @@
         #current-info {
           display: flex;
           .stats {
-            display: flex;
-            align-items: center;
+            .views {
+              display: flex;
+              align-items: center;
+            }
           }
           .published {
-            display: flex;
-            align-items: center;
+            .views {
+              display: flex;
+              align-items: center;
+            }
           }
         }
       }

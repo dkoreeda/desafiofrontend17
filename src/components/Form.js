@@ -20,6 +20,7 @@ class Form extends Component {
     this.props.handleDataSubmission(keyword);
 
     this.setState({keyword: ''});
+    document.querySelector('#busca').style.display = "none";
   }
 
   render() {
