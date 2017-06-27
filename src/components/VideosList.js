@@ -102,7 +102,7 @@ class VideosList extends React.Component {
         <div id={this.props.class}>
           { this.renderVideos(this.props.videos, this.props.selectVideo) }
         </div>
-        <div class={this.props.class}>
+        <div className={this.props.class}>
           <button onClick={(e) => this.loadMoreVideos(e)}>CARREGAR MAIS VIDEOS...</button>
           <div className="windows8" style={{display: "none"}}>
             <div className="wBall" id="wBall_1">

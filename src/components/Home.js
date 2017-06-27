@@ -101,11 +101,11 @@ class Home extends Component {
         <Nav submit={this.dataSubmission.bind(this)}/>
         <div className="main flex-columns">
           <div id="current-video">
-            <h1>Video em destaque</h1>
+            <h1>Vídeo em destaque</h1>
             {this.renderCurrentVideo(currentVideo, initialVideo)}
           </div>
           <div id="videos-list">
-            <h1>+ Videos</h1>
+            <h1>+ Vídeos</h1>
             <VideosList class={videos} videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'4'}/>
           </div>
         </div>

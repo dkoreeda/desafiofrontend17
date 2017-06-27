@@ -101,6 +101,10 @@ const CurrentVideo = (props) => {
   let currentDate = publishedDate+publishedMonth+publishedYear;
   // console.log(currentDate);
 
+  let desc = props.video.snippet.description;
+  let splitDesc = desc.split('Elenco');
+  let currentDescription = splitDesc[0];
+
   return(
       <div id="currentvideo">
         <iframe  src={"http://www.youtube.com/embed/"+videoId}></iframe>
@@ -111,17 +115,21 @@ const CurrentVideo = (props) => {
             </div>
             <div id="current-info">
               <div className="stats">
-                <img src={views} alt="icone"/>
-                <span id="published-views">{currentViews}</span>
+                <div className="views">
+                  <img src={views} alt="icone"/>
+                  <span id="published-views">{currentViews}</span>
+                </div>
               </div>
               <div className="published">
-                <img src={relogio} alt="icone"/>
-                <span id="published-date">{currentDate}</span>
+                <div className="views">
+                  <img src={relogio} alt="icone"/>
+                  <span id="published-date">{currentDate}</span>
+                </div>
               </div>
             </div>
           </div>
           <div id="current-description">
-            <p>{props.video.snippet.description}</p>
+            <p>{currentDescription}</p>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+@import "responsive";
 @import "body";
 
 .main {
@@ -35,6 +36,7 @@
       }
       #current-info {
         display: flex;
+        align-items: center;
         span {
           display: none;
           position: absolute;
@@ -47,26 +49,41 @@
           padding: 10px;
         }
         .stats {
-          position: relative;
-          img {
-            width: 30px;
-            height: auto;
-          }
-          &:hover {
-            #published-views {
-              display: block;
+          position: absolute;
+          .views {
+            position: absolute;
+            z-index: 0;
+            right: 40px;
+            top: -15px;
+            img {
+              width: 30px;
+              height: auto;
+            }
+            &:hover {
+              #published-views {
+                display: block;
+                z-index: 10;
+              }
             }
           }
+
         }
         .published {
-          position: relative;
-          img {
-            width: 30px;
-            height: auto;
-          }
-          &:hover {
-            #published-date {
-              display: block;
+          position: absolute;
+          .views {
+            position: absolute;
+            z-index: 0;
+            right: 0px;
+            top: -15px;
+            img {
+              width: 30px;
+              height: auto;
+            }
+            &:hover {
+              #published-date {
+                display: block;
+                z-index: 10;
+              }
             }
           }
         }
@@ -119,10 +136,10 @@
   }
 }
 
-@mixin loading($value) {
+@mixin loading($value, $top, $center) {
   z-index: 2;
   position: relative;
-  margin: 10% 0;
+  margin: $top $center;
   button {
     width: $value;
     position: absolute;
@@ -150,10 +167,7 @@
       @include video(170px, 100%);
     }
     .list {
-      @include loading(100%);
-    }
-    .allvideos {
-      @include loading(50%);
+      @include loading(100%, 10%, 2%);
     }
   }
 }
@@ -161,7 +175,40 @@
 #allvideos {
   display: flex;
   flex-wrap: wrap;
-    @include video(180px, 30%);
+  @include video(180px, 30%);
 }
 
+.allvideos {
+  @include loading(70%, 5%, 35%);
+}
+
+.modal {
+    width: 40%;
+    border: 1px solid gray;
+    padding: 2%;
+    background-color: white;
+    transform: translate(50%, 15%);
+    z-index: 10;
+    iframe {
+      width: 100%;
+      height: 280px;
+    }
+    .info-box {
+      #headline {
+        display: flex;
+        justify-content: space-between;
+        #current-info {
+          display: flex;
+          .stats {
+            display: flex;
+            align-items: center;
+          }
+          .published {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+}
 

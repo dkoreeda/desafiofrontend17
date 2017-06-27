@@ -1,0 +1,162 @@
+@media screen and (max-width: 480px) and (min-width: 320px) {
+  body {
+  #root {
+    #nav{
+      font-size: 0.7em;
+      #logo {
+        width: 110px;
+      }
+      #menu {
+        #search {
+          display: none;
+        }
+        #burger {
+          #menu-options {
+            width: auto;
+            font-size: 1em;
+            a {
+              img {
+                width: 30px;
+                padding: 10px 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    .main {
+      margin-top: 17%;
+      h1{
+        font-size: 0.85em;
+      }
+    }
+    .flex-columns {
+      display: block;
+      font-size: 1.5em;
+    }
+    #current-video {
+      width: 100%;
+      h1{
+        font-size: 0.85em;
+      }
+      #currentvideo {
+        iframe {
+          margin-bottom: 0px;
+          height: auto;
+        }
+        .info-box {
+          height: auto;
+
+        }
+      }
+    }
+    #videos-list {
+      width: 100%;
+      h1 {
+        font-size: 0.85em;
+      }
+      #videos {
+        height: auto;
+        #list {
+          width: 100%;
+          .video {
+            width: auto;
+            .content {
+              font-size: 0.4em;
+              img {
+                width: auto;
+                height: auto;
+                padding: 0px;
+              }
+              .content-box {
+                .info {
+                  img {
+                    width: 50%;
+                    height: auto;
+                  }
+                  span {
+                    font-size: 0.8em;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    #allvideos {
+      display: block;
+      .video {
+        width: 100%;
+        .img {
+          img {
+            width: auto;
+          }
+        }
+        .content {
+          .content-box {
+            padding: 0px;
+            h3 {
+              font-size: .7em;
+            }
+          }
+        }
+      }
+    }
+
+    .allvideos {
+      margin: 15%;
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .modal {
+    width: 70%;
+    height: 500px;
+    overflow: scroll;
+    transform: translate(15%, 5%);
+    iframe {
+      width: 100%;
+      height: auto;
+    }
+    .info-box {
+      display: block;
+      #headline {
+        display: block;
+        #current-info {
+          display: block;
+          .stats {
+            .views {
+              display: flex;
+              align-items: center;
+              img {
+                width: 30px;
+              }
+              #published-views {
+                font-size: .8em;
+              }
+            }
+          }
+          .published {
+           .views {
+              display: flex;
+              align-items: center;
+              img {
+                width: 30px;
+              }
+              #published-date {
+                font-size: .8em;
+              }
+            }
+          }
+        }
+      }
+      #current-description {
+        font-size: .9em;
+      }
+    }
+  }
+}
+}

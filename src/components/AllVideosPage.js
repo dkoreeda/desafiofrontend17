@@ -4,18 +4,6 @@ import Nav from './Nav';
 import VideosList from './VideosList';
 import CurrentVideo from './CurrentVideo';
 import Modal from 'react-modal';
-// import '../css/showall.scss';
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
 
 class AllVideosPage extends React.Component {
 
@@ -162,9 +150,9 @@ class AllVideosPage extends React.Component {
       <div>
         <Nav submit={this.dataSubmission.bind(this)}/>
         <div className="main">
-            <h1>Todos os Videos do Canal</h1>
+            <h1 style={{marginTop: "5%", color: "#a8395c"}}>Todos os Vídeos do Canal</h1>
             <VideosList class={allvideos} videos={this.state.videos} selectVideo={this.selectVideo.bind(this)} loadMoreVideos={this.loadVideos.bind(this)} number={'12'}/>
-            <Modal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal.bind(this)} style={customStyles}>
+            <Modal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal.bind(this)} className="modal">
               <CurrentVideo video={this.state.currentVideo}/>
             </Modal>
         </div>
